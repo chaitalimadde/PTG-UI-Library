@@ -16,6 +16,7 @@ export const StepThree = ({
   useEffect(()=>{
     setIsDisabled(!(details.cardType && details.cardNumber && !error.cardNumber && details.cvc && !error.cvc && details.expiration && details.cardHolder))
   },[details,error])
+
   return (
     <div className="p-2">
       <div className="col-md-12 mb-2">

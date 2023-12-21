@@ -20,6 +20,7 @@
     "build:backend": "nx build ptg-ui-apps-backend --prod --skip-nx-cache",
     "build:all:app": "npm run build:backend && npm run build:react-app -- --verbose && npm run build:ng-app && npm run build:ng-docprocess && npm run build:ng-storybook && npm run build:ng-googlemap && npm run build:ng-animations && nx build ptg-ui-web-components && npm run build:ptg-ui-web-comp-react && npm run build:ptg-ui-web-comp-angular && npm run build:ptg-metaverse-comp-react",
     "build:ng-lib": "nx build ptg-ui-angular-lib",
+    "build:ng-stencil": "nx build ptg-ui-web-components",
     "test": "nx test",
     "build:ng-storybook": "nx build-storybook ptg-ui-angular-lib",
     "start:ng-storybook:": "nx storybook ptg-ui-angular-lib"
@@ -125,6 +126,7 @@
     "react": "18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.5.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-datepicker": "^4.8.0",
     "react-dnd": "^13.1.1",
     "react-dom": "18.2.0",
@@ -135,6 +137,7 @@
     "react-router-dom": "^6.4.2",
     "react-select": "^5.5.0",
     "react-select-event": "^5.5.0",
+    "react-syntax-highlighter": "^15.5.0",
     "react-table": "^7.8.0",
     "react-text": "^3.2.5",
     "regenerator-runtime": "0.13.7",

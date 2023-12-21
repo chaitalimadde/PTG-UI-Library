@@ -10,7 +10,7 @@ describe('Date Example One', () => {
   it('date Example one', () => {
     const component = render(
       <BrowserRouter>
-        <DateExampleThree />
+        <DateExampleThree showCodeThree />
       </BrowserRouter>
     );
     container = component.container;

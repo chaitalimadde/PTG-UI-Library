@@ -151,11 +151,6 @@ const PtgUiDownload = ({
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h5 className="font-weight-bold">File Download</h5>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12">
           <div className="d-flex mb-3 justify-content-md-end">
             <div className="w-50">
               <PtgUiSelect

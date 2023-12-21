@@ -1,11 +1,55 @@
-<h3 class="mb-3" [innerHTML]="'AG_GRID_DATATABLE' | translate"></h3>
-<ptg-ui-ptg-ag-grid-datatable 
-        [rowData]="rowData" 
-        [columnData]="columnData" 
-        [sortable]="true" 
-        [rowHeight]="48" 
+<div class="parent-block">
+  <h3 class="mb-4" [innerHTML]="'AG_GRID_DATATABLE' | translate"></h3>
+  <ptg-ui-toggle-code
+    [htmlCode]="agGridDatatableHtmlCode"
+    [tsCode]="agGridDatatableTsCode"
+  >
+  </ptg-ui-toggle-code>
+  <ptg-ui-ptg-ag-grid-datatable
+    [rowData]="rowData"
+    [columnData]="columnData"
+    [sortable]="true"
+    [rowHeight]="48"
+    [rowDrag]="true"
+    [animateRow]="true"
+    [filter]="true"
+    [filterParms]="filterParms"
+    (onFilterOpen)="onFilterOpend($event)"
+    (onFilterChanged)="onFilterChanged($event)"
+    (onFilterModified)="onFilterModified($event)"
+    [pagination]="true"
+    (onPaginationChanged)="paginate($event)"
+    [paginationLimit]="10"
+    [editable]="false"
+    (onPaginationChanged)="paginate($event)"
+    (onCellValueChanges)="onEditing($event)"
+    (onNavigateToNext)="navigateToNext($event)"
+    (onNavigateToPrevious)="navigateToPrevious($event)"
+    (onNavigateToPage)="navigateToPage($event)"
+    [customPaginationClass]="'custom-Pagination-Class'"
+    [frameworkComponents]="frameworkComponents"
+  >
+  </ptg-ui-ptg-ag-grid-datatable>
+</div>
+
+<!-- Accordin with datatable  -->
+<!-- Ngx bootstrap accordian used  -->
+<div class="mt-3 parent-block">
+  <h3 class="mb-4" [innerHTML]="'DATATABLE_WITH_ACCORDIAN' | translate"></h3>
+  <accordion>
+    <accordion-group heading="Click Here To View Ag-grid Datatable">
+      <ptg-ui-toggle-code
+        [htmlCode]="agGridDatatableHtmlCode"
+        [tsCode]="agGridDatatableTsCode"
+      >
+      </ptg-ui-toggle-code>
+      <ptg-ui-ptg-ag-grid-datatable
+        [rowData]="rowData"
+        [columnData]="columnData"
+        [sortable]="true"
+        [rowHeight]="48"
         [rowDrag]="true"
-        [animateRow]="true" 
+        [animateRow]="true"
         [filter]="true"
         [filterParms]="filterParms"
         (onFilterOpen)="onFilterOpend($event)"
@@ -22,41 +66,8 @@
         (onNavigateToPage)="navigateToPage($event)"
         [customPaginationClass]="'custom-Pagination-Class'"
         [frameworkComponents]="frameworkComponents"
-        >
-</ptg-ui-ptg-ag-grid-datatable>
-
-<!-- Accordin with datatable  -->
-<!-- Ngx bootstrap accordian used  -->
-<div class="mt-3">
-        <h3 class="mb-3" [innerHTML]="'DATATABLE_WITH_ACCORDIAN' | translate"></h3>
-        <accordion [isAnimated]="true">
-            <accordion-group heading="Click Here To View Ag-grid Datatable">
-                <ptg-ui-ptg-ag-grid-datatable 
-                        [rowData]="rowData" 
-                        [columnData]="columnData" 
-                        [sortable]="true" 
-                        [rowHeight]="48" 
-                        [rowDrag]="true"
-                        [animateRow]="true" 
-                        [filter]="true"
-                        [filterParms]="filterParms"
-                        (onFilterOpen)="onFilterOpend($event)"
-                        (onFilterChanged)="onFilterChanged($event)"
-                        (onFilterModified)="onFilterModified($event)"
-                        [pagination]="true"
-                        (onPaginationChanged)="paginate($event)"
-                        [paginationLimit]="10"
-                        [editable]="false"
-                        (onPaginationChanged)="paginate($event)"
-                        (onCellValueChanges)="onEditing($event)"
-                        (onNavigateToNext)="navigateToNext($event)"
-                        (onNavigateToPrevious)="navigateToPrevious($event)"
-                        (onNavigateToPage)="navigateToPage($event)"
-                        [customPaginationClass]="'custom-Pagination-Class'"
-                        [frameworkComponents]="frameworkComponents">
-                </ptg-ui-ptg-ag-grid-datatable>
-            </accordion-group>
-          </accordion>
-    </div>
-
-
+      >
+      </ptg-ui-ptg-ag-grid-datatable>
+    </accordion-group>
+  </accordion>
+</div>

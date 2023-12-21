@@ -5,6 +5,7 @@ import {
 } from '@ptg-ui/react';
 import { useTranslation } from 'react-i18next';
 
+
 export const StepOne = ({ showNext, handleChange, details, error }: any) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const { t } = useTranslation();
@@ -28,6 +29,7 @@ export const StepOne = ({ showNext, handleChange, details, error }: any) => {
     error.confirmPassword,
   ]);
   return (
+    <>
     <div className="p-2">
       <div className="form-group required col-md-12 mb-2">
         <label htmlFor="inputUsername">{t('USER_NAME')} </label>
@@ -83,5 +85,6 @@ export const StepOne = ({ showNext, handleChange, details, error }: any) => {
         {t('NEXT')}
       </PtgUiButton>
     </div>
+    </>
   );
 };

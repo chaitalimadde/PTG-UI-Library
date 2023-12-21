@@ -11,6 +11,7 @@ import {
 } from '@ptg-ui/react';
 import { useTranslation } from 'react-i18next';
 
+
 import {
   COUNTRY_LIST,
   GENDER_LIST_SELECT,
@@ -48,6 +49,7 @@ export const StepTwo = ({
       )
     );
   }, [details, error]);
+
   return (
     <div className="p-2">
       <div className="row">

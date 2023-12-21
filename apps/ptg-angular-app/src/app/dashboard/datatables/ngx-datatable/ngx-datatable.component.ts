@@ -18,6 +18,87 @@ export class NgxDatatableComponent implements OnInit {
   temp = [];
   resources=resources;
 
+  ngxDatatableHtmlCode = `
+    <ptg-ui-ptg-ngx-datatable
+      [rows]="tableData"
+      [columns]="columns"
+      [limit]="10"
+      (getFilterEvent)="updateFilter($event)"
+      [offset]="offset"
+      (getSelectionEvent) ="onSelect($event)"
+      [hScroll]="true"
+      (getActionEvent)="getAction($event)"
+      [showActionButton]="true"
+      >
+    </ptg-ui-ptg-ngx-datatable>
+  `;
+
+  ngxDatatableTsCode = `
+  import { Component } from '@angular/core';
+
+  @Component({
+    selector: 'ngx-datatable-component',
+    templateUrl: './ngx-datatable-component.html'
+  })
+  export class NgxDatatableComponent {
+    // Data required for the Ngx Datatable
+    tableData: [{
+        "id":1,
+        "athlete": "Michael Phelps",
+        "age": 23,
+        "country": "United States",
+        "year": 2008,
+        "date": "24/08/2008",
+        "sport": "Swimming",
+        "gold": 8,
+        "silver": 0,
+        "total": 8
+      },
+      {
+        "id":11,
+        "athlete": "Michael Phelps",
+        "age": 19,
+        "country": "United States",
+        "year": 2004,
+        "date": "29/08/2004",
+        "sport": "Swimming",
+        "gold": 6,
+        "silver": 2,
+        "total": 8
+      },
+    ],
+
+    ngOnInit() {
+      this.columnData = [
+        {headerName: 'Athlete', field: 'athlete'},
+        {headerName: 'Age', field: 'age'},
+        {headerName: 'Country', field: 'country'},
+        {headerName: 'Year', field: 'year'},
+        {headerName: 'Date', field: 'date'},
+        {headerName: 'Sport', field: 'sport'},
+        {headerName: 'Silver', field: 'silver'},
+        {headerName: 'Total', field: 'total'},
+        {
+          headerName: '',
+          cellRenderer: 'buttonRenderer',
+          cellRendererParams: {
+          label: 'Click Here'
+        },
+      ]
+    }
+
+    updateFilter(event: any) {
+    }
+
+    onSelect(event: any){
+      // console.log(event);
+    }
+
+    getAction(event:any){
+      // console.log(event);
+    }
+  }`;
+
   ngOnInit(): void {
     this.temp = this.ngxdata;
     this.columns = [
@@ -36,7 +117,7 @@ export class NgxDatatableComponent implements OnInit {
        });
   }
 
-  // Filter functions 
+  // Filter functions
   updateFilter(event:any) {
     const val = event.target.value.toLowerCase();
 

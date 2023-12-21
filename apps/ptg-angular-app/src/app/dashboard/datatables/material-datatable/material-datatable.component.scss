@@ -1,3 +1,11 @@
 .pt-4 ::ng-deep td.mat-cell, .pt-4 ::ng-deep th, .table-responsive ::ng-deep td.mat-cell, .table-responsive ::ng-deep th {
   padding: 10px;
 }
+
+.parent-block {
+  position: relative;
+
+  ::ng-deep .icon-block {
+    top: -55px;
+  }
+}

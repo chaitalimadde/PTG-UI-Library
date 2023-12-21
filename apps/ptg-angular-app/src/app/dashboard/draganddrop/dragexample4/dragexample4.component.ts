@@ -84,7 +84,7 @@ export class Dragexample4Component {
 
   // Drop method for example 3
   drop1(event: CdkDragDrop<string[]>): void {
-    
+
     moveItemInArray(
       this.collectionArray.controls,
       event.previousIndex,

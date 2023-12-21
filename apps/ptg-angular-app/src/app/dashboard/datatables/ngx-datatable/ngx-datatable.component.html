@@ -1,14 +1,20 @@
-
-<h3 class="mb-3" [innerHTML]="'NGX_DATATABLE' | translate"></h3>
-<ptg-ui-ptg-ngx-datatable 
-    [rows]="ngxdata" 
-    [columns]="columns" 
-    [limit]="10" 
-    (getFilterEvent)="updateFilter($event)" 
+<div class="parent-block">
+  <h3 class="mb-3" [innerHTML]="'NGX_DATATABLE' | translate"></h3>
+  <ptg-ui-toggle-code
+    [htmlCode]="ngxDatatableHtmlCode"
+    [tsCode]="ngxDatatableTsCode"
+  >
+  </ptg-ui-toggle-code>
+  <ptg-ui-ptg-ngx-datatable
+    [rows]="ngxdata"
+    [columns]="columns"
+    [limit]="10"
+    (getFilterEvent)="updateFilter($event)"
     [offset]="offset"
-    (getSelectionEvent) ="onSelect($event)"
+    (getSelectionEvent)="onSelect($event)"
     [hScroll]="true"
     (getActionEvent)="getAction($event)"
     [showActionButton]="true"
-    >
-</ptg-ui-ptg-ngx-datatable>
+  >
+  </ptg-ui-ptg-ngx-datatable>
+</div>

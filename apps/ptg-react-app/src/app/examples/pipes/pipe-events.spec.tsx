@@ -7,7 +7,7 @@ import PipeEvent from './pipe-events';
 
 describe('Pipes', () => {
   it('should render successfully', () => {
-    const { baseElement,getByTestId} = render(<PipeEvent />);
+    const { baseElement,getByTestId} = render(<PipeEvent showEventCode />);
     expect(baseElement).toBeTruthy();
     fireEvent.change(getByTestId('phoneNumber'), {
       target: { value: '9726847987' },

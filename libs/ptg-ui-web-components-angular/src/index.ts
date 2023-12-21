@@ -1,1 +1,1 @@
-export * from './lib/ptg-ui-web-components-angular';
+export * from './lib/web-components-angular';

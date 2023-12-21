@@ -7,7 +7,7 @@ import Pipes from './pipes';
 
 describe('Pipes', () => {
   it('should render successfully', () => {
-    const { baseElement,getByTestId} = render(<Pipes />);
+    const { baseElement,getByTestId} = render(<Pipes showPipeCode />);
     expect(baseElement).toBeTruthy();
     fireEvent.change(getByTestId('cname'), {
       target: { value: 'test@test.com' },

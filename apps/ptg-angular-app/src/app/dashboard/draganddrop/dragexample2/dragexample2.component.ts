@@ -34,7 +34,40 @@ export class Dragexample2Component implements OnInit, OnDestroy {
   resources=resources;
   USERSDATA:any=[];
 
-  constructor(private authService: AuthService ,private mocksApiService: mocksService,) {}
+  dragAndDropHtmlCode = `
+  <div cdkDropList #personList="cdkDropList" [cdkDropListData]="userDetails"
+       (cdkDropListDropped)="onDrop($event)">
+    <div *ngFor="let item of userDetails; let i = index" cdkDrag>
+      <p cdkDragHandle class="px-2"><i class="fa-solid fa-bars"></i></p>
+      <p>{{i+1}} - {{item.username}}</p>
+      <p cdkDragHandle class="px-2">
+        <i class="fa-solid fa-bars"></i>
+      </p>
+    </div>
+  </div>
+  `;
+  dragAndDropTsCode = `
+  import { Component } from '@angular/core';
+  import {
+    CdkDragDrop,
+    moveItemInArray,
+    transferArrayItem,
+  } from '@angular/cdk/drag-drop';
+
+  @Component({
+    selector: 'drag-and-drop-component',
+    templateUrl: './drag-and-drop-component.html'
+  })
+  export class DragAndDropComponent {
+    // Data required to drag and drop the box/element
+    userDetails = [
+      {username: 'nimish.yash', name: 'Nimish'},
+      {username: 'kumar.yash', name: 'Raj Kumar'},
+    ]
+  }
+  `;
+
+  constructor(private authService: AuthService,private mocksApiService: mocksService,) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -80,7 +113,7 @@ export class Dragexample2Component implements OnInit, OnDestroy {
   //     error: (err) => {
   //       this.loading = false;
   //     },
-  //     complete: () => console.info('complete') 
+  //     complete: () => console.info('complete')
   //   });
   // }
 
@@ -101,7 +134,7 @@ export class Dragexample2Component implements OnInit, OnDestroy {
       );
     }
   }
-  
+
   ngOnDestroy(): void {
     this.unsubscribe.next(0);
     this.unsubscribe.complete();

@@ -38,7 +38,105 @@ export class Dragexample1Component implements OnInit {
   dropActionTodo!: any;
   resources=resources;
 
+  dragAndDropHtmlCode = `
+    // Node used to display drag and drop success
+    <ng-template #tmplNode let-node="node">
+      <div [attr.data-id]="node.id" [attr.id]="'node-'+node.id">
+        <div (click)="node.isExpanded=!node.isExpanded">
+          {{node.children.length ? (node.isExpanded?'-&nbsp;':'+') : '&nbsp;&nbsp;&nbsp;'}} &nbsp;&nbsp;&nbsp; {{node.id}}
+          <span> ({{node.children.length}}{{node.children.length?', expanded: ' +
+            !!node.isExpanded:''}})</span>
+        </div>
+
+        <div *ngIf="node.isExpanded && node.children.length" cdkDropList
+          [cdkDropListData]="node.children" [id]="node.id" [cdkDropListConnectedTo]="dropTargetIds"
+          (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+
+          <div *ngFor="let child of node.children" cdkDrag [cdkDragData]="child.id" (cdkDragMoved)="dragMoved($event)">
+            <ng-container *ngTemplateOutlet="tmplNode,context:{node:child}"></ng-container>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+
+    <div>
+      <h4>Demo</h4>
+      <div cdkDropList [cdkDropListData]="nodes" [id]="'main'" [cdkDropListConnectedTo]="dropTargetIds"
+        (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+        <div *ngFor="let node of nodes" cdkDrag [cdkDragData]="node.id" (cdkDragMoved)="dragMoved($event)">
+          <ng-container *ngTemplateOutlet="tmplNode,context:{node:node}"></ng-container>
+        </div>
+      </div>
+    </div>
+  `;
+  dragAndDropTsCode = `
+  import { Component, Inject } from '@angular/core';
+  import { DOCUMENT } from "@angular/common";
+  import {
+    CdkDragDrop,
+    moveItemInArray,
+    transferArrayItem,
+  } from '@angular/cdk/drag-drop';
+
+  @Component({
+    selector: 'drag-and-drop-component',
+    templateUrl: './drag-and-drop-component.html'
+  })
+  export class DragAndDropComponent {
+    // Data required to drag and drop the box/element
+    nodes = [
+        {
+          id: 'item 1',
+          children:[]
+        },
+        {
+          id: 'item 2',
+          children:[
+            {
+              id: 'item 2.1',
+              children:[]
+            },
+              {
+              id: 'item 2.2',
+              children:[]
+            },
+              {
+              id: 'item 2.3',
+              children:[]
+            }
+          ]
+        },
+        {
+          id: 'item 3',
+          children:[]
+        }
+      ]
+  }
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.prepareDragDrop(this.nodes);
+  }
+
+  prepareDragDrop(nodes: TreeNode[]) {
+    nodes.forEach((node) => {
+      this.dropTargetIds.push(node.id);
+      this.nodeLookup[node.id] = node;
+      this.prepareDragDrop(node.children);
+    });
+  }
+
+  dragMoved(event:any) {
+    // Code performed on dragging box
+  }
+
+  drop(event:any) {
+    // Will be executed on dropping off the box
+  }
+  `;
+
   constructor(@Inject(DOCUMENT) private document: Document,private mocksApiService: mocksService) {
+      // this.prepareDragDrop(this.nodes);
   }
 ngOnInit(): void {
     this.mocksApiService.getDemoData().subscribe((response) => {
@@ -60,7 +158,7 @@ ngOnInit(): void {
   @debounce(50)
   dragMoved(event:any) {
       const e = this.document.elementFromPoint(event.pointerPosition.x,event.pointerPosition.y);
-      
+
       if (!e) {
           this.clearDragInfo();
           return;
@@ -148,7 +246,7 @@ ngOnInit(): void {
   }
 
   clearDragInfo(dropped = false) {
-      
+
       if (dropped) {
           this.dropActionTodo = null;
       }
@@ -162,6 +260,6 @@ ngOnInit(): void {
           .querySelectorAll(".drop-inside")
           .forEach(element => element.classList.remove("drop-inside"));
   }
- 
+
 
 }

@@ -1,5 +1,4 @@
 import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import { render, fireEvent } from '@testing-library/react';
 import selectEvent from 'react-select-event';
 import MultiSelectCheckbox from './select';

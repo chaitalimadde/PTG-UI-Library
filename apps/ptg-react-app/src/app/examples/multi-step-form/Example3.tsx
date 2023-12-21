@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Stepper, Step, StepLabel, Typography } from '@material-ui/core';
+import CodeIcon from '@mui/icons-material/Code';
 import { StepOne } from './stepOne';
 import { StepTwo } from './stepTwo';
 import './Example3.scss';
@@ -8,6 +9,8 @@ import { PtgUiButton } from '@ptg-ui/react';
 import { StepThree } from './stepThree';
 import { useTranslation } from 'react-i18next';
 import { StepFour } from './stepFour';
+import ShowCodeComponent from '@ptg-react-app/common/showCode/showCodeComponent';
+
 const Example3 = () => {
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
@@ -51,6 +54,18 @@ const Example3 = () => {
     expiration: false,
     cardHolder: false,
   });
+
+  
+  const [showCodeOne, setShowCodeOne] = useState(false);
+
+  const ShowExampleCode = () => {
+    if(!showCodeOne){
+      setShowCodeOne(true);
+    }
+    else{
+      setShowCodeOne(false);
+    }
+  };
 
   // reset Form
   const resetForm = () => {
@@ -176,7 +191,6 @@ const Example3 = () => {
   };
 
   function showNext() {
-    console.log('hereeeee');
     setStep(+step + 1);
   }
   const showPrevious = () => {
@@ -229,9 +243,486 @@ const Example3 = () => {
     }
   };
 
+  const componentCode = `
+
+  //Account Info
+
+  import React, { useEffect, useState } from 'react';
+  import { PtgUiButton, PtgUiInput } from '@ptg-ui/react';
+
+  export const StepOne = ({ showNext, handleChange, details, error }: any) => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  
+  useEffect(() => {
+    setIsDisabled(
+      !(
+        details.userName.length > 0 &&
+        details.password.length > 0 &&
+        details.confirmPassword.length > 0 &&
+        !error.userName &&
+        !error.password &&
+        !error.confirmPassword
+      )
+    );
+  }, [
+    details.userName,
+    details.password,
+    details.confirmPassword,
+    error.userName,
+    error.password,
+    error.confirmPassword,
+  ]);
+
+ 
+  //Personal Information 
+
+
+  import React, { useEffect, useState } from 'react';
+  import {
+    PtgUiButton,
+    PtgUiInput,
+    PtgUiSelect,
+    PtgUiCheckbox,
+    PtgUiRadio,
+    PtgUiDatePicker,
+    PtgUiTextArea,
+  } from '@ptg-ui/react';
+  
+  import { COUNTRY_LIST, GENDER_LIST_SELECT, SALUTATION_LIST, STATE_LIST 
+  } from '@ptg-react-app/mock/mocks';
+  
+  export const StepTwo = ({
+    showNext,
+    showPrevious,
+    details,
+    handleChange,
+    error,
+    handleBlur,
+  }: any) => {
+    const [isDisabled, setIsDisabled] = useState(true);
+    
+    useEffect(() => {
+      setIsDisabled(
+        !(
+          details.Greeting.length &&
+          details.Gender.length &&
+          details.firstName &&
+          details.lastName &&
+          details.email &&
+          !error.email &&
+          details.phone &&
+          !error.phone &&
+          details.zipCode &&
+          !error.zipCode &&
+          details.state &&
+          details.homeAddress &&
+          details.country
+        )
+      );
+    }, [details, error]);
+
+  //Payment Details
+
+  export const CARD_LIST = [
+      // { value: '', label: 'Select' },
+      { value: 'Visa', label: 'Visa', name: 'card' },
+      { value: 'Master Card', label: 'Master Card', name: 'card' },
+      { value: 'Rupay Card', label: 'Rupay Card', name: 'card' },
+    ];
+  
+  import { PtgUiButton, PtgUiInput, PtgUiSelect } from '@ptg-ui/react';
+  import { CARD_LIST } from '@ptg-react-app/mock/mocks';
+  import React, { useEffect, useState } from 'react';
+  
+  export const StepThree = ({
+    showNext,
+    showPrevious,
+    details,
+    handleChange,
+    error,
+    handleBlur,
+    }: any) => {
+
+  const [isDisabled, setIsDisabled] = useState(true)
+      
+  useEffect(()=>{
+    setIsDisabled(!(details.cardType && details.cardNumber && !error.cardNumber
+       && details.cvc && !error.cvc && details.expiration && details.cardHolder))
+  },[details,error])
+
+  //Confirm Your Details
+  
+  import { PtgUiButton } from '@ptg-ui/react';
+  import React from 'react';
+  
+  export const StepFour = ({ resetForm, details, submitForm, showPrevious }: any) => {
+  `
+  
+
+  const htmlCode = `
+
+  //Account Info
+
+  <label htmlFor="inputUsername"> USER_NAME </label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.userName ? 'border-danger' : ''
+    }"}
+    type="text"
+    name="userName"
+    id="inputUsername"
+    value={details.userName}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="password"> LABEL_PASSWORD </label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.password ? 'border-danger' : ''
+    }"}
+    type="password"
+    name="password"
+    id="password"
+    value={details.password}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="confirmPassword"> CONFIRM_PASSWORD_LABEL </label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.confirmPassword ? 'border-danger' : ''
+    }"}
+    type="password"
+    name="confirmPassword"
+    id="confirmPassword"
+    value={details.confirmPassword}
+    onChange={handleChange}
+  />
+  {error.confirmPassword && (
+    <span className="form-text text-danger">{error.confirmPassword}</span>
+  )}
+
+
+  //Personal Information 
+
+  <PtgUiButton
+    className="w-100 mt-2"
+    type="button"
+    onClick={showNext}
+    disabled={isDisabled}
+    // accessKey="s"
+    aria-label="next"
+    data-testid="next"
+  > NEXT </PtgUiButton>
+
+  <label htmlFor="inputGreeting">GREETING</label>
+  <PtgUiSelect
+    name="Greeting"
+    list={SALUTATION_LIST}
+    id="inputGreeting"
+    data-testid="city"
+    className={"sel-placeholder w-100 bg_0 ${
+      error.Greeting ? 'border-danger' : ''
+    }"}
+    aria-label="given-name"
+    onBlur={handleBlur}
+    value={details.Greeting}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputGender">GENDER</label>
+  <PtgUiSelect
+    name="Gender"
+    list={GENDER_LIST_SELECT}
+    id="inputGender"
+    data-testid="city"
+    className={"sel-placeholder w-100 bg_0 ${
+      error.Gender ? 'border-danger' : ''
+    }"}
+    aria-label="given-name"
+    onBlur={handleBlur}
+    value={details.Gender}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputFirstName">FIRST_NAME</label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.firstName ? 'border-danger' : ''
+    }"}
+    type="text"
+    name="firstName"
+    id="inputFirstName"
+    value={details.firstName}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputLastName">LAST_NAME</label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.lastName ? 'border-danger' : ''
+    }"}
+    type="text"
+    name="lastName"
+    id="inputLastName"
+    value={details.lastName}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputEmail">LABEL_EMAIL</label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.email ? 'border-danger' : ''
+    }"}
+    type="text"
+    name="email"
+    id="inputEmail"
+    value={details.email}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputPhone">PHONE</label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.phone ? 'border-danger' : ''
+    }"}
+    type="phone"
+    name="phone"
+    id="inputPhone"
+    value={details.phone}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputZipCode">ZIP_CODE</label>
+  <PtgUiInput
+    className={"w-100 form-control bg_0 ${
+      error.zipCode ? 'border-danger' : ''
+    }"}
+    type="text"
+    name="zipCode"
+    id="inputZipCode"
+    value={details.zipCode}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputState">STATE</label>
+  <PtgUiSelect
+    name="state"
+    list={STATE_LIST}
+    id="inputState"
+    data-testid="city"
+    className={"sel-placeholder w-100 bg_0 ${
+      error.state ? 'border-danger' : ''
+    }"}
+    aria-label="given-name"
+    onBlur={handleBlur}
+    value={details.state}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputAddress">HOME_ADDRESS</label>
+  <PtgUiTextArea
+    className={"w-100 form-control bg_0 ${
+      error.homeAddress ? 'border-danger' : ''
+    }"}
+    rows="2"
+    name="homeAddress"
+    id="inputAddress"
+    value={details.homeAddress}
+    onChange={handleChange}
+  />
+
+  <label htmlFor="inputContry">COUNTRY</label>
+  <PtgUiSelect
+    name="country"
+    list={COUNTRY_LIST}
+    id="inputContry"
+    data-testid="city"
+    className={"sel-placeholder w-100 bg_0 ${
+      error.country ? 'border-danger' : ''
+    }"}
+    aria-label="given-name"
+    onBlur={handleBlur}
+    value={details.country}
+    onChange={handleChange}
+  />
+
+  <PtgUiButton
+    className="w-100"
+    type="button"
+    onClick={showPrevious}
+    aria-label="previous"
+    data-testid="previous"
+  >PREVIOUS</PtgUiButton>
+
+  <PtgUiButton
+    className="w-100"
+    type="button"
+    onClick={showNext}
+    aria-label="next"
+    data-testid="next"
+    disabled={isDisabled}
+  >NEXT</PtgUiButton>
+
+  //Payment Details
+
+  <label htmlFor="inputCardType">CARD_TYPE</label>
+      <PtgUiSelect
+        name="cardType"
+        list={CARD_LIST}
+        id="inputCardType"
+        data-testid="city"
+        className={"sel-placeholder w-100 bg_0 ${
+          error.cardType ? 'border-danger' : ''
+        }"}
+        aria-label="given-name"
+        onBlur={handleBlur}
+        value={details.cardType}
+        onChange={handleChange}
+      />
+
+    <label htmlFor="inputCardNumber">CARD_NUMBER</label>
+      <PtgUiInput
+        className={"w-100 form-control bg_0 ${
+          error.cardNumber ? 'border-danger' : ''
+        }"}
+        type="text"
+        name="cardNumber"
+        id="inputCardNumber"
+        value={details.cardNumber}
+        onChange={handleChange}
+      />
+
+      <label htmlFor="inputCvc">CVC</label>
+        <PtgUiInput
+          className={"w-100 form-control bg_0 ${
+            error.cvc ? 'border-danger' : ''
+          }"}
+          type="text"
+          name="cvc"
+          id="inputCvc"
+          value={details.cvc}
+          onChange={handleChange}
+        />
+   
+      <label htmlFor="inputexpirationDate">EXPIRATION_DATE</label>
+        <PtgUiInput
+          className={"w-100 form-control bg_0 ${
+            error.expiration ? 'border-danger' : ''
+          }"}
+          type="text"
+          name="expiration"
+          id="inputexpirationDate"
+          placeholder="MM/YY"
+          value={details.expiration}
+          onChange={handleChange}
+        />
+  
+    <label htmlFor="inputCardHolderName">CARD_HOLDER_NAME</label>
+      <PtgUiInput
+        className={"w-100 form-control bg_0 ${
+          error.cardHolder ? 'border-danger' : ''
+        }"}
+        type="text"
+        name="cardHolder"
+        id="inputCardHolderName"
+        value={details.cardHolder}
+        onChange={handleChange}
+      />
+ 
+      <PtgUiButton
+        className="w-100"
+        type="button"
+        onClick={showPrevious}
+        aria-label="previous"
+        data-testid="previous"
+      >
+        PREVIOUS
+      </PtgUiButton>
+    
+      <PtgUiButton
+        className="w-100"
+        type="button"
+        onClick={showNext}
+        disabled={isDisabled}
+        aria-label="next"
+        data-testid="next"
+      >
+        NEXT
+      </PtgUiButton>
+
+    //Confirm Your Details
+
+    <h4 className="text-center my-2">Confirm Details</h4>
+    <div className=" col-5 form-text">USER_NAME</div>
+    <div className=" col-6 form-text mb-2">{details.userName}</div>
+    <div className=" col-5 form-text">NAME</div>
+    <div className=" col-6 form-text mb-2">
+      {details.Greeting +
+        ' ' +
+        details.firstName +
+        ' ' +
+        details.lastName}
+    </div>
+    <div className=" col-5 form-text">GENDER</div>
+    <div className=" col-6 form-text mb-2">{details.Gender}</div>
+    <div className=" col-5 form-text">LABEL_EMAIL</div>
+    <div className=" col-6 mb-2 form-text">{details.email}</div>
+    <div className=" col-5 form-text">PHONE</div>
+    <div className=" col-6 form-text mb-2">{details.phone}</div>
+    <div className=" col-5 form-text">CARD_TYPE</div>
+    <div className=" col-6 form-text mb-2">{details.cardType}</div>
+    <div className=" col-5 form-text">CARD_NUMBER</div>
+    <div className=" col-6 form-text mb-2">{details.cardNumber}</div>
+    <div className=" col-5 form-text">Address</div>
+    <div className=" col-6 form-text mb-2">{"${details.homeAddress},${details.state},${details.zipCode}\n 
+    ${details.country}"}</div>
+  
+
+    <PtgUiButton
+      className="w-100"
+      type="button"
+      onClick={showPrevious}
+      aria-label="submit"
+      data-testid="submit"
+    >
+      PREVIOUS
+    </PtgUiButton>
+
+    <PtgUiButton
+      className="w-100"
+      type="button"
+      onClick={resetForm}
+      aria-label="reset"
+      data-testid="reset"
+    >
+      RESET
+    </PtgUiButton>
+ 
+    <PtgUiButton
+      className="w-100"
+      type="button"
+      onClick={submitForm}
+      aria-label="submit"
+      data-testid="submit"
+    >
+      SUBMIT
+    </PtgUiButton>
+  `
+
   return (
     <>
+      <div className="row">
+      <div className="col-lg-11">
       <h1 className="text-center">{t('MULTI_STEP_FORM')}</h1>
+      </div>
+      <div className="col-lg-1 mt-2">
+        <CodeIcon onClick={ShowExampleCode} fontSize="medium" className='show-code-icon'></CodeIcon>
+      </div>
+      </div>
+
+      {!showCodeOne ? (
+      <>
       <div className="row">
         <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12 mr-5">
           <Stepper activeStep={step} orientation="vertical">
@@ -284,6 +775,10 @@ const Example3 = () => {
           {showStep(step)}
         </div>
       </div>
+      </>
+      ):(
+        <ShowCodeComponent componentCode={componentCode} htmlCode={htmlCode}/>
+      )}
     </>
   );
 };

@@ -28,7 +28,57 @@ export class Dragexample3Component implements OnInit {
   done:any;
 
   resources=resources;
-  
+
+  dragAndDropHtmlCode = `
+    // TODO List
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todoData" [cdkDropListConnectedTo]="[doneList]"
+         (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let item of todoData; let i = index" cdkDrag>{{i+1}} - {{item}}</div>
+    </div>
+
+    // DONE List
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="doneData" [cdkDropListConnectedTo]="[todoList]"
+        (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let item of doneData; let i = index" cdkDrag>{{i+1}} - {{item}}</div>
+    </div>
+  `;
+  dragAndDropTsCode = `
+    import { Component } from '@angular/core';
+    import {
+      CdkDragDrop,
+      moveItemInArray,
+      transferArrayItem,
+    } from '@angular/cdk/drag-drop';
+
+    @Component({
+      selector: 'drag-and-drop-component',
+      templateUrl: './drag-and-drop-component.html'
+    })
+    export class DragAndDropComponent {
+      // Data required to drag and drop the box/element
+      todoData = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+      doneData = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+
+      // Drop method for example 2
+      drop(event: CdkDragDrop<string[]> | any) {
+        if (event.previousContainer === event.container) {
+          moveItemInArray(
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex
+          );
+        } else {
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex
+          );
+        }
+      }
+    }
+  `;
+
   constructor(private mocksApiService: mocksService,) { }
 
   ngOnInit(): void {

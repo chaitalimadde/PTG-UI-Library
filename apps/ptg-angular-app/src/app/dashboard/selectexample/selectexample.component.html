@@ -1,55 +1,102 @@
 <div class="wrapper">
-    <section>
-        <div class="container-fluid">
-            <div class="form-wrapper">
-                <form class="form-login" [formGroup]="selectForm" (ngSubmit)="onFormSubmit($event)">
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h3 [innerHTML]="'SIMPLE_SELECT_EX' | translate"></h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
-                            <label tabindex="0" aria-label="select" [innerHTML]="'SINGLE_SELECT' | translate"></label>
-                            <ptg-ui-select formControlName='city2' class="w-100" [id]="'singleSelect'" [items]='cityList'
-                                [isMultiple]="false" [closeOnSelect]="true"
-                                [placeholder]="'SELECT_PLACEHOLDER' | translate">
-                            </ptg-ui-select>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h3 [innerHTML]="'MULTI_SELECT_EX' | translate"></h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
-                            <label tabindex="0" [innerHTML]="'MULTI_SELECT' | translate"></label>
-                            <ptg-ui-select formControlName='city1' class="w-100" [id]="'multiSelect'" [items]='cityList'
-                                [isMultiple]="true" [closeOnSelect]="false"
-                                [placeholder]="'SELECT_PLACEHOLDER' | translate">
-                            </ptg-ui-select>
-                        </div>
-                    </div>
-                    <hr />
-                    <h3 class="mt-2 mb-5">Multi Select with custom item count </h3>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
-                            <label tabindex="0" [innerHTML]="'MULTI_SELECT' | translate"></label>
-                            <ptg-ui-select [itemCount]="2" formControlName='city1' class="w-100" [id]="'multiSelect'" [items]='cityList'
-                                [isMultiple]="true" [closeOnSelect]="false"
-                                [placeholder]="'SELECT_PLACEHOLDER' | translate">
-                            </ptg-ui-select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <!-- <button type="submit" class="btn btn-primary">submit</button> -->
-                        </div>
-                    </div>
-                </form>
+  <section>
+    <div class="container-fluid">
+      <div class="form-wrapper">
+        <form
+          class="form-login"
+          [formGroup]="selectForm"
+          (ngSubmit)="onFormSubmit($event)"
+        >
+          <div class="row parent-block">
+            <div class="col-12 mb-4">
+              <h3 [innerHTML]="'SIMPLE_SELECT_EX' | translate"></h3>
+              <ptg-ui-toggle-code
+                [htmlCode]="selectHtmlCode"
+                [tsCode]="selectTsCode"
+              >
+              </ptg-ui-toggle-code>
             </div>
-        </div>
-    </section>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+              <label
+                tabindex="0"
+                aria-label="select"
+                [innerHTML]="'SINGLE_SELECT' | translate"
+              >
+              </label>
+              <ptg-ui-select
+                formControlName="city2"
+                class="w-100"
+                [id]="'singleSelect'"
+                [items]="cityList"
+                [isMultiple]="false"
+                [closeOnSelect]="true"
+                [placeholder]="'SELECT_PLACEHOLDER' | translate"
+              >
+              </ptg-ui-select>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-12 mb-4 parent-block">
+              <h3 [innerHTML]="'MULTI_SELECT_EX' | translate"></h3>
+              <ptg-ui-toggle-code
+                [htmlCode]="multiSelectHtmlCode"
+                [tsCode]="selectTsCode"
+              >
+              </ptg-ui-toggle-code>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+              <label
+                tabindex="0"
+                [innerHTML]="'MULTI_SELECT' | translate"
+              ></label>
+              <ptg-ui-select
+                formControlName="city1"
+                class="w-100"
+                [id]="'multiSelect'"
+                [items]="cityList"
+                [isMultiple]="true"
+                [closeOnSelect]="false"
+                [placeholder]="'SELECT_PLACEHOLDER' | translate"
+              >
+              </ptg-ui-select>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-12 mb-4 parent-block">
+              <h3>Multi Select with custom item count</h3>
+              <ptg-ui-toggle-code
+                [htmlCode]="multiSelectCountHtmlCode"
+                [tsCode]="selectTsCode"
+              >
+              </ptg-ui-toggle-code>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+              <label
+                tabindex="0"
+                [innerHTML]="'MULTI_SELECT' | translate"
+              ></label>
+              <ptg-ui-select
+                [itemCount]="2"
+                formControlName="city1"
+                class="w-100"
+                [id]="'multiSelect'"
+                [items]="cityList"
+                [isMultiple]="true"
+                [closeOnSelect]="false"
+                [placeholder]="'SELECT_PLACEHOLDER' | translate"
+              >
+              </ptg-ui-select>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12">
+              <!-- <button type="submit" class="btn btn-primary">submit</button> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 </div>

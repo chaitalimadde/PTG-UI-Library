@@ -1,25 +1,58 @@
 <div class="d3-charts">
-    <!-- Bar chart block  -->
-    <div class="mb-2 overflow-auto">
-        <div *ngIf="barChartData.data.length">
-        <h4 [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
-      <ptg-ui-bar-chart [data]="barChartData.data" [width]="barChartData.width" [height]="barChartData.height" [margin]="barChartData.margin" [start]="barChartData.start" [end]="barChartData.end"></ptg-ui-bar-chart>
-        </div>
-    </div>
-    
-    <!-- Pie chart block  -->        
-    <div class="overflow-auto mb-2">
-        <div  *ngIf="pieChartData.data.length">
-        <h4 [innerHTML]="'PIE_CHART_TEXT' | translate"></h4>
-        <ptg-ui-pie-chart [data]="pieChartData.data" [colorsArray]="pieChartData.colors"></ptg-ui-pie-chart>
-        </div>
-    </div>
+  <!-- Bar chart block  -->
+  <div class="mb-2 overflow-auto">
+    <div *ngIf="barChartData.data.length">
 
-    <!-- Line chart block  -->
-    <div class="overflow-auto mb-2">
-     <div *ngIf="lineChartData.data.length">
-      <h4 [innerHTML]="'LINE_CHART_TEXT' | translate"></h4>
-      <ptg-ui-line-chart [data]="lineChartData.data" [margin]="lineChartData.margin" [width]="lineChartData.width" [height]="lineChartData.height"></ptg-ui-line-chart>
+    <h4 [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
+    <ptg-ui-toggle-code
+      [htmlCode]="barChartHtmlCode"
+      [tsCode]="barChartTsCode"
+    ></ptg-ui-toggle-code>
+    <ptg-ui-bar-chart
+      [data]="barChartData.data"
+      [width]="barChartData.width"
+      [height]="barChartData.height"
+      [margin]="barChartData.margin"
+      [start]="barChartData.start"
+      [end]="barChartData.end"
+    ></ptg-ui-bar-chart>
+  </div>
+
+  </div>
+
+  <!-- Pie chart block  -->
+  <div class="overflow-auto mb-2">
+    <div  *ngIf="pieChartData.data.length">
+
+    <h4 [innerHTML]="'PIE_CHART_TEXT' | translate"></h4>
+    <ptg-ui-toggle-code
+      [htmlCode]="pieChartHtml"
+      [tsCode]="pieChartTsCode"
+    ></ptg-ui-toggle-code>
+    <ptg-ui-pie-chart
+      [data]="pieChartData.data"
+      [colorsArray]="pieChartData.colors"
+    ></ptg-ui-pie-chart>
+  </div>
+
+  </div>
+
+  <!-- Line chart block  -->
+  <div class="overflow-auto mb-2">
+    <div *ngIf="lineChartData.data.length">
+
+    <h4 [innerHTML]="'LINE_CHART_TEXT' | translate"></h4>
+    <ptg-ui-toggle-code
+      [htmlCode]="lineChartHtml"
+      [tsCode]="lineChartTsCode"
+    ></ptg-ui-toggle-code>
+    <ptg-ui-line-chart
+      [data]="lineChartData.data"
+      [margin]="lineChartData.margin"
+      [width]="lineChartData.width"
+      [height]="lineChartData.height"
+    ></ptg-ui-line-chart>
     </div>
+  </div>
 </div>
 </div>

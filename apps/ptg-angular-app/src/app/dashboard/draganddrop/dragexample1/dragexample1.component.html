@@ -1,36 +1,74 @@
 <ng-template #tmplNode let-node="node">
-  <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-'+node.id">
-
-    <div class="node-title" (click)="node.isExpanded=!node.isExpanded">
-      {{node.children.length ? (node.isExpanded?'-&nbsp;':'+') : '&nbsp;&nbsp;&nbsp;'}} &nbsp;&nbsp;&nbsp; {{node.id}}
-      <span class="item-notes"> ({{node.children.length}}{{node.children.length?', expanded: ' +
-        !!node.isExpanded:''}})</span>
+  <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-' + node.id">
+    <div class="node-title" (click)="node.isExpanded = !node.isExpanded">
+      {{
+        node.children.length
+          ? node.isExpanded
+            ? '-&nbsp;'
+            : '+'
+          : '&nbsp;&nbsp;&nbsp;'
+      }}
+      &nbsp;&nbsp;&nbsp; {{ node.id }}
+      <span class="item-notes">
+        ({{ node.children.length
+        }}{{
+          node.children.length ? ', expanded: ' + !!node.isExpanded : ''
+        }})</span
+      >
     </div>
 
-    <div *ngIf="node.isExpanded && node.children.length" class="node-children" cdkDropList
-      [cdkDropListData]="node.children" [id]="node.id" [cdkDropListConnectedTo]="dropTargetIds"
-      (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
-
-      <div *ngFor="let child of node.children" cdkDrag [cdkDragData]="child.id" (cdkDragMoved)="dragMoved($event)">
-        <ng-container *ngTemplateOutlet="tmplNode,context:{node:child}"></ng-container>
+    <div
+      *ngIf="node.isExpanded && node.children.length"
+      class="node-children"
+      cdkDropList
+      [cdkDropListData]="node.children"
+      [id]="node.id"
+      [cdkDropListConnectedTo]="dropTargetIds"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListSortingDisabled]="true"
+    >
+      <div
+        *ngFor="let child of node.children"
+        cdkDrag
+        [cdkDragData]="child.id"
+        (cdkDragMoved)="dragMoved($event)"
+      >
+        <ng-container
+          *ngTemplateOutlet="tmplNode; context: { node: child }"
+        ></ng-container>
       </div>
-
     </div>
-
   </div>
 </ng-template>
 
-<div class="wrapper3 mt-5 pt-3">
+<div class="wrapper3 mt-3 pt-3 parent-block">
   <h4 [innerHTML]="'DRAG_DROP_EX_4' | translate"></h4>
-  <div cdkDropList [cdkDropListData]="nodes" [id]="'main'" [cdkDropListConnectedTo]="dropTargetIds"
-    (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
-    <div *ngFor="let node of nodes" cdkDrag [cdkDragData]="node.id" (cdkDragMoved)="dragMoved($event)">
-      <ng-container *ngTemplateOutlet="tmplNode,context:{node:node}"></ng-container>
+  <ptg-ui-toggle-code
+    [htmlCode]="dragAndDropHtmlCode"
+    [tsCode]="dragAndDropTsCode"
+  >
+  </ptg-ui-toggle-code>
+  <div
+    cdkDropList
+    [cdkDropListData]="nodes"
+    [id]="'main'"
+    [cdkDropListConnectedTo]="dropTargetIds"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListSortingDisabled]="true"
+  >
+    <div
+      *ngFor="let node of nodes"
+      cdkDrag
+      [cdkDragData]="node.id"
+      (cdkDragMoved)="dragMoved($event)"
+    >
+      <ng-container
+        *ngTemplateOutlet="tmplNode; context: { node: node }"
+      ></ng-container>
     </div>
   </div>
 </div>
 
-
 <hr />
 <p><strong [innerHTML]="'CURRENT_DRAG_DROP_ACTION' | translate"></strong></p>
-<pre>{{dropActionTodo|json}}</pre>
+<pre>{{ dropActionTodo | json }}</pre>

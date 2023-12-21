@@ -1,15 +1,20 @@
 <section>
-    <div class="container ptg-treeview-container">
-        <div class="row">
-            <div class="col-12">
-                <h4 [innerHTML]="'INTERMEDIATE_CHECKBOX_TEXT' | translate"></h4>
-                <div *ngIf="checkBoxData?.children.length">
-                <ptg-ui-indeterminate-checkboxes [checkBoxList]="checkBoxData" (onCheckboxValueChanges)="onChanges($event)"></ptg-ui-indeterminate-checkboxes>
-            </div>
-            </div>
+  <div class="container ptg-treeview-container">
+    <div class="row">
+      <div class="col-12 parent-block">
+        <h4 [innerHTML]="'INTERMEDIATE_CHECKBOX_TEXT' | translate"></h4>
+        <ptg-ui-toggle-code
+          [htmlCode]="treeViewHtmlCode"
+          [tsCode]="treeViewTsCode"
+        >
+        </ptg-ui-toggle-code>
+        <div *ngIf="checkBoxData?.children.length">
+         <ptg-ui-indeterminate-checkboxes
+          [checkBoxList]="checkBoxData"
+          (onCheckboxValueChanges)="onChanges($event)"
+        ></ptg-ui-indeterminate-checkboxes>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-
-
-
