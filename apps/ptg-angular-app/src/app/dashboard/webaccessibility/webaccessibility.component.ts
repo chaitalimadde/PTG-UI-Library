@@ -16,8 +16,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '@ptg-angular-app/auth/models/user.model';
-import { CITY_LIST, GENDER_LIST } from '../../mock/mocks';
 import { resources } from '../../../resource/resource';
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 @Component({
   selector: 'ptg-ui-webaccessibility',
   templateUrl: './webaccessibility.component.html',
@@ -26,8 +26,9 @@ import { resources } from '../../../resource/resource';
 export class WebaccessibilityComponent implements OnInit {
   signupForm!: FormGroup;
   loading = false;
-  genderList = GENDER_LIST;
-  cityList = CITY_LIST;
+  genderList:any=[];
+  cityList:any=[];
+  
   resources = resources;
   serviceData:any
 
@@ -37,7 +38,8 @@ export class WebaccessibilityComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private mocksApiService: mocksService
 
   ) { }
 
@@ -50,6 +52,15 @@ export class WebaccessibilityComponent implements OnInit {
       dob: ['', [Validators.required]],
       password: [null, [Validators.required]],
       confirm: [false, [Validators.requiredTrue]],
+    });
+
+  // gender list
+  this.mocksApiService.getGenderList().subscribe((response) => {
+    this.genderList = response?.data[0].attributes.gender
+   });
+   //city list
+   this.mocksApiService.getCityList().subscribe((response) => {
+    this.cityList = response?.data[0].attributes.data;
     });
     
   }

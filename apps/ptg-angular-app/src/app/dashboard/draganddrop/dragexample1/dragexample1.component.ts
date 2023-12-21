@@ -11,11 +11,16 @@
  * @description This component for drag and drop example1
 **/
 
-import { Component, Inject, ViewEncapsulation } from "@angular/core";
+import { Component, Inject, OnInit, ViewEncapsulation } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { demoData, TreeNode, DropInfo } from "../../../mock/data";
 import { debounce } from "@agentepsilon/decko";
 import { resources } from "../../../../resource/resource";
+import { mocksService } from "@ptg-angular-app/common/data-services/mocks.service";
+export interface TreeNode {
+    id: string;
+    children: TreeNode[];
+    isExpanded?:boolean;
+  }
 @Component({
   selector: 'ptg-ui-dragexample1',
   templateUrl: './dragexample1.component.html',
@@ -23,29 +28,34 @@ import { resources } from "../../../../resource/resource";
   encapsulation: ViewEncapsulation.None
 })
 
-export class Dragexample1Component {
-
-  nodes: TreeNode[] = demoData;
-
-  // ids for connected drop lists
+export class Dragexample1Component implements OnInit {
+    nodes:any;
+//   nodes:TreeNode[];
+// ids for connected drop lists 
   dropTargetIds:any = [];
   nodeLookup:any = {};
   // dropActionTodo: DropInfo = null;
   dropActionTodo!: any;
   resources=resources;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
-      this.prepareDragDrop(this.nodes);
+  constructor(@Inject(DOCUMENT) private document: Document,private mocksApiService: mocksService) {
   }
+ngOnInit(): void {
+    this.mocksApiService.getDemoData().subscribe((response) => {
+        this.nodes=(response?.data[0].attributes.data);
+        this.prepareDragDrop(this.nodes);
 
+        });
+
+    }
   prepareDragDrop(nodes: TreeNode[]) {
-      nodes.forEach((node) => {
-          this.dropTargetIds.push(node.id);
-          this.nodeLookup[node.id] = node;
-          this.prepareDragDrop(node.children);
-      });
-  }
-
+        nodes.forEach((node) => {
+            this.dropTargetIds.push(node.id);
+            this.nodeLookup[node.id] = node;
+            this.prepareDragDrop(node.children);
+        });
+    }
+  
 
   @debounce(50)
   dragMoved(event:any) {
@@ -60,7 +70,8 @@ export class Dragexample1Component {
           this.clearDragInfo();
           return;
       }
-      this.dropActionTodo = {
+     this.dropActionTodo = {
+        
           targetId: container.getAttribute("data-id")
       };
       const targetRect = container.getBoundingClientRect();

@@ -14,8 +14,8 @@
 
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CITY_LIST } from '@ptg-angular-app/mock/mocks';
 import { resources } from '../../../resource/resource';
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 @Component({
   selector: 'ptg-ui-selectexample',
   templateUrl: './selectexample.component.html',
@@ -25,16 +25,21 @@ import { resources } from '../../../resource/resource';
   },
 })
 export class SelectexampleComponent implements OnInit {
+  cityList: any = [];
+
   selectForm!: FormGroup;
-  cityList = CITY_LIST;
   resources = resources;
 
-  constructor(private formBuilder: FormBuilder, private cdr:ChangeDetectorRef) { }
+  constructor(private formBuilder: FormBuilder, private cdr:ChangeDetectorRef, private mocksApiService: mocksService,) { }
 
   ngOnInit(): void {
     this.selectForm = this.formBuilder.group({
       city1: [null],
       city2: [null],
+    });
+
+  this.mocksApiService.getCityList().subscribe((response) => {
+    this.cityList  = response?.data[0].attributes.data;
     });
   }
 

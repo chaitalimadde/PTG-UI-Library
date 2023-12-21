@@ -20,7 +20,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Subject, takeUntil } from 'rxjs';
 import { resources } from "../../../../resource/resource";
-import { USERSDATA } from "../../../mock/mocks";
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-dragexample2',
@@ -32,22 +32,35 @@ export class Dragexample2Component implements OnInit, OnDestroy {
   loading = false;
   unsubscribe: Subject<any> = new Subject();
   resources=resources;
+  USERSDATA:any=[];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService ,private mocksApiService: mocksService,) {}
 
   ngOnInit(): void {
     this.loading = true;
-    // this.getUsers()
-    this.getuserMock()
+    // this.getUsers()  
+    // this.getuserMock()
+
     this.loading = false;
-  }
-  getuserMock(){
-    this.personaldetails = USERSDATA.filter((res: any) => {
+    this.mocksApiService.getUserList().subscribe((response) => {
+        this.USERSDATA = response?.data[0].attributes.users.filter((res: any) => {
       if (res.role.type === 'admin') {
-        return res;
-      }
+          return res;
+        }
+      });
+      this.personaldetails=this.USERSDATA
     });
   }
+  // getuserMock(){
+  //   if(this.USERSDATA.length>0){
+  //   this.personaldetails = this.USERSDATA.filter((res: any) => {
+  //     if (res.role.type === 'admin') {
+  //       return res;
+  //     }
+
+  //   });
+  // }
+  // }
   // getUsers(){
   //   this.authService
   //   .getUser()

@@ -9,31 +9,25 @@
  * @description This component for header
 **/
 
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import { mocksService } from '../data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   itemValue = 'English';
-  langeList = [
-    {
-      id: '1',
-      name: 'English',
-      value: 'en',
-    },
-    {
-      id: '2',
-      name: 'French',
-      value: 'fr',
-    }
-  ];;
-  constructor(public translate: TranslateService,  private cdr: ChangeDetectorRef){
+  langeList:any=[];
+  constructor(public translate: TranslateService,  private cdr: ChangeDetectorRef ,private mocksApiService: mocksService,){
   }
-
+  ngOnInit(): void {
+    this.mocksApiService.getLangList().subscribe((response) => {
+      this.langeList = response?.data[0].attributes.language;
+      });  }
+ 
   changeLang(lang:any){
 		this.translate.use(lang.value)
 	}

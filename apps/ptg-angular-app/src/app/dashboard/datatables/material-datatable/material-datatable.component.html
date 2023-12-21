@@ -1,9 +1,9 @@
 <h3 class="mb-3" [innerHTML]="'MATERIAL_DATATABLE' | translate"></h3>
 <tabset #staticTabs>
   <tab heading="Reusable Material Table">
-    <div class="pt-4">
+    <div class="pt-4" *ngIf="matrialdata.length">
       <ptg-ui-mat-datatable
-        [data]="data"
+        [data]="matrialdata"
         [columns]="dataColumns"
         [showFiter]="true"
         [totalCount]="20"
@@ -16,7 +16,7 @@
   <tab heading="Material With Action Button">
     <!-- datatable  -->
     <div class="example-container mat-elevation-z8 mat-datatable table-responsive mt-4">
-      <table mat-table class="table table-bordered" [dataSource]="data">
+      <table mat-table class="table table-bordered" [dataSource]="matrialdata">
         <!-- Name Column -->
         <ng-container matColumnDef="athlete">
           <th mat-header-cell *matHeaderCellDef>Name</th>

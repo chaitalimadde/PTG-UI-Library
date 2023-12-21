@@ -3,37 +3,49 @@
     <div class="pt-3">
         <!-- Bar chart block  -->
         <div class="mb-3">
-          <h4 class="mb-3" [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
+          <div *ngIf="barChart3d.data.length">
+            <h4 class="mb-3" [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
             <ptg-ui-high-bar-chart [data]="barChart3d.data"></ptg-ui-high-bar-chart>
+          </div>
         </div>
 
         <!-- Pie chart block  -->   
         <div class="mb-3">
-          <h4 class="mb-3" [innerHTML]="'PIE_CHART_TEXT' | translate"></h4>
+          <div *ngIf="pieChart3d.data.length">
+           <h4 class="mb-3" [innerHTML]="'PIE_CHART_TEXT' | translate"></h4>
             <ptg-ui-high-pie-chart [data]="pieChart3d.data"></ptg-ui-high-pie-chart>
+           </div>
         </div>
 
         <!-- Line chart block  -->
         <div class="mb-3">
-            <h4 class="mb-3" [innerHTML]="'SINGLE_LINE_CHART' | translate"></h4>
+          <div *ngIf="lineChart3d.data.length">
+           <h4 class="mb-3" [innerHTML]="'SINGLE_LINE_CHART' | translate"></h4>
             <ptg-ui-high-line-chart [data]="lineChart3d.data" chartId="single-line" [categories]="lineChart3d.categories"></ptg-ui-high-line-chart>
-        </div>
+            </div>
+          </div>
 
         <div class="mb-3">
+          <div *ngIf="multiLineChart3d.data.length">
           <h4 class="mb-3" [innerHTML]="'MULTIPLE_LINE_CHART' | translate"></h4>
           <ptg-ui-high-line-chart [data]="multiLineChart3d.data" chartId="multi-chart-line" [categories]="multiLineChart3d.categories"></ptg-ui-high-line-chart>
+          </div>
         </div>
 
         <!-- LineBar Chart  -->
         <div class="mb-3">
+          <div *ngIf="lineBarChart.categories.length">
           <h4 class="mb-3" [innerHTML]="'LINE_BAR_CHART' | translate"></h4>
           <ptg-ui-linebar-chart [remainingOptions]="lineBarChart.remainingOptions" [categories]="lineBarChart.categories" [title]="lineBarChart.title" [subtitle]="lineBarChart.subtitle"></ptg-ui-linebar-chart>
+         </div>
         </div>
 
         <!-- Stacked Chart  -->          
         <div class="mb-3">
-          <h4 class="mb-3" [innerHTML]="'STACKED_CHART' | translate"></h4>
+          <div *ngIf="stackedColumn.categories.length">
+            <h4 class="mb-3" [innerHTML]="'STACKED_CHART' | translate"></h4>
           <ptg-ui-stacked-column-chart [remainingOptions]="stackedColumn.remainingOptions" [categories]="stackedColumn.categories" [title]="stackedColumn.title" [subtitle]="stackedColumn.subtitle"></ptg-ui-stacked-column-chart>
+          </div>
         </div>
     </div>
   </tab>
@@ -41,26 +53,34 @@
     <div class="pt-3">
       <!-- Bar chart block  -->
       <div class="mb-3">
-        <h4 class="mb-3" [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
+       <div *ngIf="barChart3d.data.length">
+          <h4 class="mb-3" [innerHTML]="'BAR_CHART_TEXT' | translate"></h4>
           <ptg-ui-high-3d-bar-chart [data]="barChart3d.data" [categories]="barChart3d.categories"></ptg-ui-high-3d-bar-chart>
-      </div>
+        </div>
+        </div>
 
       <!-- Single Line chart block  -->
       <div class="mb-3">
+        <div *ngIf="lineChart3d.data.length">
           <h4 class="mb-3" [innerHTML]="'SINGLE_LINE_CHART' | translate"></h4>
           <ptg-ui-high-3d-line-chart [data]="lineChart3d.data" [categories]="lineChart3d.categories" chartId="single-line-chart"></ptg-ui-high-3d-line-chart>
-      </div>
+          </div>
+        </div>
 
       <!-- Multi Line chart block  -->
       <div class="mb-3">
+        <div *ngIf="multiLineChart3d.data.length">
         <h4 class="mb-3" [innerHTML]="'MULTIPLE_LINE_CHART' | translate"></h4>
         <ptg-ui-high-3d-line-chart [data]="multiLineChart3d.data" [categories]="multiLineChart3d.categories" chartId="multi-line-chart"></ptg-ui-high-3d-line-chart>
+       </div>
       </div>
 
       <!-- Pie chart block  -->
       <div class="mb-3">
+        <div *ngIf="pieChart3d.data.length">
         <h4 class="mb-3" [innerHTML]="'PIE_CHART' | translate"></h4>
         <ptg-ui-high-3d-pie-chart [data]="pieChart3d.data"></ptg-ui-high-3d-pie-chart>
+        </div>
     </div>
 
     </div>

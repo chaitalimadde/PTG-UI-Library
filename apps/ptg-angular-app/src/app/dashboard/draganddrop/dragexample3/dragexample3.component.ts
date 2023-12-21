@@ -15,8 +15,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { DONE, TODO } from '@ptg-angular-app/mock/mocks';
 import { resources } from "../../../../resource/resource";
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-dragexample3',
@@ -24,13 +24,23 @@ import { resources } from "../../../../resource/resource";
   styleUrls: ['./dragexample3.component.scss']
 })
 export class Dragexample3Component implements OnInit {
-  todo = TODO;
-  done = DONE;
+  todo:any=[];
+  done:any;
+
   resources=resources;
   
-  constructor() { }
+  constructor(private mocksApiService: mocksService,) { }
 
   ngOnInit(): void {
+    //todo list
+    this.mocksApiService.getTodoList().subscribe((response) => {
+      this.todo = response?.data[0].attributes.todo.split(',')
+     });
+     //done list
+     this.mocksApiService.getDoneList().subscribe((response) => {
+      this.done=response?.data[0].attributes.done.split(',')
+     });
+
   }
 
   // Drop method for example 2

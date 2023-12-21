@@ -1,11 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CITY_LIST, GENDER_LIST } from '../../mock/mocks';
 import { TokenRes } from '../models/token.model';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { resources } from '../../../resource/resource';
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 /**
  * @since March 2022
@@ -22,8 +22,8 @@ import { resources } from '../../../resource/resource';
 export class SignupComponent implements OnInit, AfterViewInit {
 	signupForm!: FormGroup;
 	loading = false;
-	genderList = GENDER_LIST;
-	cityList = CITY_LIST;
+	genderList:any=[];
+	cityList:any=[];
 	resources = resources;
 
 	get f() {
@@ -34,7 +34,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private auth: AuthService,
-		private cdr: ChangeDetectorRef
+		private cdr: ChangeDetectorRef,
+		private mocksApiService: mocksService
+
+
 	) { }
 
 	ngOnInit(): void {
@@ -47,6 +50,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
 			password: [null, [Validators.required]],
 			confirm: [false, [Validators.requiredTrue]],
 		});
+		// gender list
+		this.mocksApiService.getGenderList().subscribe((response) => {
+			this.genderList = response?.data[0].attributes.gender
+		   });
+		   //city list
+		   this.mocksApiService.getCityList().subscribe((response) => {
+			this.cityList = response?.data[0].attributes.data;
+			});
 	}
 
 	// This method for signup submit

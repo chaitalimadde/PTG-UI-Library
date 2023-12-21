@@ -1,7 +1,7 @@
 
 <h3 class="mb-3" [innerHTML]="'NGX_DATATABLE' | translate"></h3>
 <ptg-ui-ptg-ngx-datatable 
-    [rows]="rows" 
+    [rows]="ngxdata" 
     [columns]="columns" 
     [limit]="10" 
     (getFilterEvent)="updateFilter($event)" 

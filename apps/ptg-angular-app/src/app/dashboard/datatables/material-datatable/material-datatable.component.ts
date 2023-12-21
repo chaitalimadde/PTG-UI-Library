@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GRID_DATA } from '@ptg-angular-app/mock/grid-data';
 import { resources } from "../../../../resource/resource";
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-material-datatable',
@@ -8,12 +8,16 @@ import { resources } from "../../../../resource/resource";
   styleUrls: ['./material-datatable.component.scss']
 })
 export class MaterialDatatableComponent implements OnInit {
-  data = GRID_DATA;
+  constructor(private mocksApiService: mocksService,) {}
+  matrialdata:any=[]
   dataColumns:any;
   resources=resources;
 
   ngOnInit(): void {
     this.dataColumns = ['athlete', 'age', 'country', 'year', 'date', 'sport', 'silver','total'];
+    this.mocksApiService.getTableList().subscribe((response) => {
+      this.matrialdata = response?.data[0].attributes.grid;      
+    });
   }
 
   // pagination functionlity start here

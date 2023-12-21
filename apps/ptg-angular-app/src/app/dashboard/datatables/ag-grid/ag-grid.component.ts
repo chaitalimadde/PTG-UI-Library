@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit } from '@angular/core';
-import { GRID_DATA } from '@ptg-angular-app/mock/grid-data';
 import { resources } from '@ptg-ui/apps/ptg-angular-app/src/resource/resource';
 import { ActionButtonComponent } from '../action-button/action-button.component';
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-ag-grid',
@@ -11,15 +11,15 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
   styleUrls: ['./ag-grid.component.scss']
 })
 export class AgGridComponent implements OnInit {
+  rowData:any=[]
   columnData: any;
-  rowData = GRID_DATA;
   filterParms = {
     buttons: ['apply', 'reset'],
     closeOnApply: true
   }
   resources=resources
   frameworkComponents: any;
-  constructor() {
+  constructor(private mocksApiService: mocksService,) {
     this.frameworkComponents = {
       buttonRenderer: ActionButtonComponent,
     }
@@ -45,7 +45,12 @@ export class AgGridComponent implements OnInit {
         },
       },
     ];
+   this.rowData = [];
+    this.mocksApiService.getTableList().subscribe((response) => {
+      this.rowData = response?.data[0].attributes.grid;
+    });
   }
+ 
 
   onEditButtonClick(params:any){
     // console.log(params)

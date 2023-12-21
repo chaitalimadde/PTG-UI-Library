@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ACCORDIAN_DATA } from '@ptg-angular-app/mock/mocks';
+import { mocksService } from '@ptg-angular-app/common/data-services/mocks.service';
 
 @Component({
   selector: 'ptg-ui-accordian-example',
@@ -7,10 +7,13 @@ import { ACCORDIAN_DATA } from '@ptg-angular-app/mock/mocks';
   styleUrls: ['./accordian-example.component.scss']
 })
 export class AccordianExampleComponent implements OnInit {
-data= ACCORDIAN_DATA;
-  constructor() { }
+  accordianData:any;
+  constructor(private mocksApiService: mocksService,) { }
 
   ngOnInit(): void {
+    this.mocksApiService.getAccordianData().subscribe((response) => {
+      this.accordianData = response?.data[0].attributes.data;
+      });
   }
 
 }

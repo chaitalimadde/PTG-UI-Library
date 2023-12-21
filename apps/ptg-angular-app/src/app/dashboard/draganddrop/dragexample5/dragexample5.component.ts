@@ -11,11 +11,16 @@
  * @description This component for drag and drop example5
 **/
 
-import { Component, Inject, ViewEncapsulation } from "@angular/core";
+import { Component, Inject, OnInit, ViewEncapsulation } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { demoData1, TreeNode, DropInfo } from "../../../mock/data";
 import { debounce } from "@agentepsilon/decko";
 import { resources } from "../../../../resource/resource";
+import { mocksService } from "@ptg-angular-app/common/data-services/mocks.service";
+export interface TreeNode {
+    id: string;
+    children: TreeNode[];
+    isExpanded?:boolean;
+  }
 
 @Component({
   selector: 'ptg-ui-dragexample5',
@@ -24,9 +29,9 @@ import { resources } from "../../../../resource/resource";
   encapsulation: ViewEncapsulation.None
 })
 
-export class Dragexample5Component {
-
-  nodes: TreeNode[] = demoData1;
+export class Dragexample5Component implements OnInit{
+    nodes:any;
+//   nodes: TreeNode[] = demoData1;
 
   // ids for connected drop lists
   dropTargetIds:any = [];
@@ -35,9 +40,14 @@ export class Dragexample5Component {
   dropActionTodo!: any;
   resources=resources;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
-      this.prepareDragDrop(this.nodes);
+  constructor(@Inject(DOCUMENT) private document: Document,private mocksApiService: mocksService) {
   }
+ngOnInit(): void {
+    this.mocksApiService.getDemoData1().subscribe((response) => {
+        this.nodes=(response?.data[0].attributes.data);
+        this.prepareDragDrop(this.nodes);
+      });
+    }
 
   prepareDragDrop(nodes: TreeNode[]) {
       nodes.forEach((node) => {
