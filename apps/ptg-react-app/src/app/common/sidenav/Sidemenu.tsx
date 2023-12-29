@@ -72,6 +72,12 @@ export const NavigationData = [
     disabled: false,
   },
   {
+    path: '/tooltip',
+    icon: 'fa fa-th',
+    label: 'Tooltip',
+    disabled: false,
+  },
+  {
     path: '/dragnDrop',
     icon: 'fa fa-lock',
     label: 'DRAG N DROP',

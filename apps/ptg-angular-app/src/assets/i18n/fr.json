@@ -150,5 +150,7 @@
   "ACHIEVED_PNT_FIVE": "Pour un plug-in lisible ou des étiquettes lues, nous devons passer tabindex = 0, afin que l'écran prêt puisse également préparer l'étiquette.",
   "ACCORDIAN_EXAMPLE": "Exemple d'accordéon",
   "DIALOG_WITH_SLOT_EXAMPLE": "Boîte de dialogue avec exemple d'emplacement",
-  "DIALOG_WITH_OPTIONAL_FOOTER_EXAMPLE": "Boîte de dialogue avec option de pied de page facultative"
+  "DIALOG_WITH_OPTIONAL_FOOTER_EXAMPLE": "Boîte de dialogue avec option de pied de page facultative",
+  "TOOLTIP_EXAMPLE":"Exemple d'info-bulle"
+
 }

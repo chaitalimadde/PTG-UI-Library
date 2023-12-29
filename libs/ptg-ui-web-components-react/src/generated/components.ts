@@ -27,3 +27,4 @@ export const PtgSpinner = /*@__PURE__*/createReactComponent<JSX.PtgSpinner, HTML
 export const PtgTable = /*@__PURE__*/createReactComponent<JSX.PtgTable, HTMLPtgTableElement>('ptg-table');
 export const PtgTextarea = /*@__PURE__*/createReactComponent<JSX.PtgTextarea, HTMLPtgTextareaElement>('ptg-textarea');
 export const PtgToast = /*@__PURE__*/createReactComponent<JSX.PtgToast, HTMLPtgToastElement>('ptg-toast');
+export const PtgTooltip = /*@__PURE__*/createReactComponent<JSX.PtgTooltip, HTMLPtgTooltipElement>('ptg-tooltip');

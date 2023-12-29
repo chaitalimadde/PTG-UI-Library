@@ -20,10 +20,10 @@
 
 ## Events
 
-| Event            | Description | Type                   |
-| ---------------- | ----------- | ---------------------- |
-| `onConfirmClose` |             | `CustomEvent<boolean>` |
-| `onModalClose`   |             | `CustomEvent<boolean>` |
+| Event          | Description | Type                   |
+| -------------- | ----------- | ---------------------- |
+| `confirmClose` |             | `CustomEvent<boolean>` |
+| `modalClose`   |             | `CustomEvent<boolean>` |
 
 
 ## Dependencies

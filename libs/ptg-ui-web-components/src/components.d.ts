@@ -162,6 +162,12 @@ export namespace Components {
         "open": boolean;
         "type": string;
     }
+    interface PtgTooltip {
+        "backgroundColor": string;
+        "text": string;
+        "tooltipAlignment": string;
+        "tooltipText": string;
+    }
 }
 export interface PtgCalenderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -298,6 +304,12 @@ declare global {
         prototype: HTMLPtgToastElement;
         new (): HTMLPtgToastElement;
     };
+    interface HTMLPtgTooltipElement extends Components.PtgTooltip, HTMLStencilElement {
+    }
+    var HTMLPtgTooltipElement: {
+        prototype: HTMLPtgTooltipElement;
+        new (): HTMLPtgTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "ptg-accordion": HTMLPtgAccordionElement;
@@ -318,6 +330,7 @@ declare global {
         "ptg-table": HTMLPtgTableElement;
         "ptg-textarea": HTMLPtgTextareaElement;
         "ptg-toast": HTMLPtgToastElement;
+        "ptg-tooltip": HTMLPtgTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -488,6 +501,12 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "type"?: string;
     }
+    interface PtgTooltip {
+        "backgroundColor"?: string;
+        "text"?: string;
+        "tooltipAlignment"?: string;
+        "tooltipText"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "ptg-accordion": PtgAccordion;
@@ -508,6 +527,7 @@ declare namespace LocalJSX {
         "ptg-table": PtgTable;
         "ptg-textarea": PtgTextarea;
         "ptg-toast": PtgToast;
+        "ptg-tooltip": PtgTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -533,6 +553,7 @@ declare module "@stencil/core" {
             "ptg-table": LocalJSX.PtgTable & JSXBase.HTMLAttributes<HTMLPtgTableElement>;
             "ptg-textarea": LocalJSX.PtgTextarea & JSXBase.HTMLAttributes<HTMLPtgTextareaElement>;
             "ptg-toast": LocalJSX.PtgToast & JSXBase.HTMLAttributes<HTMLPtgToastElement>;
+            "ptg-tooltip": LocalJSX.PtgTooltip & JSXBase.HTMLAttributes<HTMLPtgTooltipElement>;
         }
     }
 }

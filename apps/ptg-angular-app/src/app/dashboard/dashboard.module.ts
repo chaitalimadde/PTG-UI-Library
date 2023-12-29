@@ -69,6 +69,7 @@ import { DemoPtgUiNgModule } from '@ptg-angular-app/common/demo-ptg-ui-ng/demo-p
 
 import { WebComponentsAngularModule } from '@ptg-ui/ptg-ui-web-components-angular';
 import { defineCustomElements } from '@ptg-ui/ptg-ui-web-components/loader';
+import { TooltipComponent } from './tooltip-component/tooltip.component';
 defineCustomElements();
 
 @NgModule({
@@ -106,7 +107,8 @@ defineCustomElements();
     AccordianExampleComponent,
     MultistepFormLayoutComponent,
     ToggleCodeComponent,
-    DialogExampleComponent
+    DialogExampleComponent,
+    TooltipComponent
   ],
 
   bootstrap: [MultistepFormLayoutComponent],

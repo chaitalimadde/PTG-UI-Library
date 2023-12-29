@@ -28,6 +28,7 @@ import { GridlayoutexampleComponent } from './gridlayoutexample/gridlayoutexampl
 import { AccordianExampleComponent } from './accordian-example/accordian-example.component';
 import { MultistepFormLayoutComponent } from './multistep-form/multistep-form-layout/multistep-form-layout.component';
 import { DialogExampleComponent } from './dialog-component/dialog-example.component';
+import { TooltipComponent } from './tooltip-component/tooltip.component';
 
 const routes: Routes = [
   {
@@ -108,6 +109,10 @@ const routes: Routes = [
   {
     path: 'dialog',
     component: DialogExampleComponent
+  },
+  {
+    path: 'tooltip',
+    component: TooltipComponent
   },
   {
     path:'download',

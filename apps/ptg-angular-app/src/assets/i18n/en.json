@@ -170,5 +170,6 @@
   "LABEL_EXPIRY_MONTH": "Expiry Month",
   "LABEL_EXPIRY_YEAR": "Expiry Year",
   "LABEL_CVV": "CVV",
-  "MULTI_FORMS": "Multi Form"
+  "MULTI_FORMS": "Multi Form",
+  "TOOLTIP_EXAMPLE":"Tooltip_Example"
 }

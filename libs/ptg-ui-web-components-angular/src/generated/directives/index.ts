@@ -20,5 +20,6 @@ export const DIRECTIVES = [
   d.PtgSpinner,
   d.PtgTable,
   d.PtgTextarea,
-  d.PtgToast
+  d.PtgToast,
+  d.PtgTooltip
 ];

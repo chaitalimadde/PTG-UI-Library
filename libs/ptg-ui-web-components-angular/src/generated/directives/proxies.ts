@@ -226,11 +226,11 @@ export declare interface PtgModal extends Components.PtgModal {
   /**
    *  
    */
-  onModalClose: EventEmitter<CustomEvent<boolean>>;
+  modalClose: EventEmitter<CustomEvent<boolean>>;
   /**
    *  
    */
-  onConfirmClose: EventEmitter<CustomEvent<boolean>>;
+  confirmClose: EventEmitter<CustomEvent<boolean>>;
 
 }
 
@@ -249,7 +249,7 @@ export class PtgModal {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['onModalClose', 'onConfirmClose']);
+    proxyOutputs(this, this.el, ['modalClose', 'confirmClose']);
   }
 }
 
@@ -446,6 +446,27 @@ export declare interface PtgToast extends Components.PtgToast {}
   inputs: ['appearance', 'discription', 'id1', 'open', 'type']
 })
 export class PtgToast {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface PtgTooltip extends Components.PtgTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['backgroundColor', 'text', 'tooltipAlignment', 'tooltipText']
+})
+@Component({
+  selector: 'ptg-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['backgroundColor', 'text', 'tooltipAlignment', 'tooltipText']
+})
+export class PtgTooltip {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();

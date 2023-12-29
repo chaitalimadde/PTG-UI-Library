@@ -145,5 +145,12 @@ export const NavigationData = [
     icon: 'fa-solid fa-file',
     label: 'MULTI_FORMS',
     disabled: false,
-  }
+  },
+  {
+    id:"15",
+    path: '/tooltip',
+    icon: 'fas fa-grip-vertical',
+    label: 'TOOLTIP',
+    disabled: false,
+  },
 ];

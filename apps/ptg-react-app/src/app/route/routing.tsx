@@ -31,6 +31,7 @@ const PtgUiDragnDrop = lazy(() => import('@ptg-react-app/examples/drag-n-drop/dr
 const PtgUiPipes= lazy(() => import('@ptg-react-app/examples/pipes/pipe-tabs'))
 const PtgUiDownloadFile = lazy(()=> import ("../examples/downloadFile/downloadFile"));
 const PtgUiDialog = lazy(()=> import ("../examples/dialog/dialog"));
+const PtgUiTooltip = lazy(()=> import ("../examples/tooltip/tooltip"));
 const GridLayout = lazy(()=> import ("../examples/grid-layout/grid-layout"));
 const Indeterminate =  lazy(()=> import ("../examples/indeterminate-checkbox/indeterminate-checkbox"));
 const PtgUiReactTable =  lazy(()=> import ("../examples/data-table/react-table"));
@@ -115,6 +116,10 @@ const routing = [
   {
     path: '/dialog',
     component: PtgUiDialog,
+  },
+  {
+    path: '/tooltip',
+    component: PtgUiTooltip,
   },
   {
     path:'/downloadFile',
