@@ -89,7 +89,13 @@ export namespace Components {
         "width": string;
     }
     interface PtgModal {
+        "btnName": string;
+        "confirmButtonName": string;
         "isOpen": boolean;
+        "modalHeaderName": string;
+        "modalSize": string;
+        "showFooter": boolean;
+        "showHeader": boolean;
     }
     interface PtgPagination {
         "itemCount": number;
@@ -168,6 +174,10 @@ export interface PtgCheckboxCustomEvent<T> extends CustomEvent<T> {
 export interface PtgInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPtgInputElement;
+}
+export interface PtgModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPtgModalElement;
 }
 export interface PtgPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -401,7 +411,15 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface PtgModal {
+        "btnName"?: string;
+        "confirmButtonName"?: string;
         "isOpen"?: boolean;
+        "modalHeaderName"?: string;
+        "modalSize"?: string;
+        "onConfirmClose"?: (event: PtgModalCustomEvent<boolean>) => void;
+        "onModalClose"?: (event: PtgModalCustomEvent<boolean>) => void;
+        "showFooter"?: boolean;
+        "showHeader"?: boolean;
     }
     interface PtgPagination {
         "itemCount"?: number;

@@ -2,19 +2,19 @@
  * @since April 2022
  * @author Ankit Patidar
  * @uses Example using download as reusable component.
- * 
+ *
 */
 
 import { useState } from 'react';
 import PtgUiDownload from '@ptg-ui/libs/ptg-ui-react-lib/src/lib/download-file/downloadFile';
 import { downloadFileData } from '../../mock/mocks';
 import CodeIcon from '@mui/icons-material/Code';
-import ShowCodeComponent from '@ptg-react-app/common/showCode/showCodeComponent';
+import ShowCodeComponent from '../../common/showCode/showCodeComponent';
 
 const DownloadFileExample = () => {
 
   const [showCode, setShowCode] = useState(false);
-  
+
   const ShowExampleCode = () => {
     if(!showCode){
       setShowCode(true);
@@ -43,7 +43,7 @@ const DownloadFileExample = () => {
 
   import PtgUiDownload from '@ptg-ui/libs/ptg-ui-react-lib/src/lib/download-file/downloadFile';
   import { downloadFileData } from '../../mock/mocks';
-  
+
   export default DownloadFileExample;
   `
   const htmlCode = `
@@ -53,25 +53,23 @@ const DownloadFileExample = () => {
     />
   `
     return (
-    <>
     <div className='row'>
-    <div className="col-11">
-      <h5 className="font-weight-bold">File Download</h5>
-    </div>
-    <div className='col-1 mr-5 mb-3'>
-      <CodeIcon onClick={ShowExampleCode} fontSize="medium" className='show-code-icon'></CodeIcon>
-    </div>
+      <div className="col-11">
+        <h5 className="font-weight-bold">File Download</h5>
+      </div>
+      <div className='col-1 mr-5 mb-3'>
+        <CodeIcon onClick={ShowExampleCode} fontSize="medium" className='show-code-icon'></CodeIcon>
+      </div>
 
-    {!showCode ? (
-      <PtgUiDownload
-       columns={downloadFileData.columns}
-       dataToDownload={downloadFileData.data}
-      />
-    ):(
-      <ShowCodeComponent componentCode={componentCode} htmlCode={htmlCode} />
-    )}
+      {!showCode ? (
+        <PtgUiDownload
+        columns={downloadFileData.columns}
+        dataToDownload={downloadFileData.data}
+        />
+      ):(
+        <ShowCodeComponent componentCode={componentCode} htmlCode={htmlCode} />
+      )}
     </div>
-    </>
   );
 };
 

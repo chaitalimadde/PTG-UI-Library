@@ -4,17 +4,17 @@
 @import '~ngx-toastr/toastr';
 
 // ng-select style
-@import "~@ng-select/ng-select/themes/default.theme.css";  
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 /* Importing Datepicker SCSS file. */
 // @import "~ngx-bootstrap/datepicker/bs-datepicker";
 @import "../../../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
-// Ag-grid datatable 
+// Ag-grid datatable
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-// Ngx datatable 
+// Ngx datatable
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
@@ -35,5 +35,6 @@
 
 // include other modules mixin here
 @include app-theme();
+@import '../../../libs/ptg-ui-web-components/src/global/global.css';
 
 @import "~bootstrap/scss/bootstrap";

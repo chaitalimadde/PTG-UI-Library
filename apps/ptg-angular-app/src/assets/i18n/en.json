@@ -150,6 +150,8 @@
   "ACHIEVED_PNT_FOUR": "when we use any color for like button or background color the color contrast are according to the Accessibility",
   "ACHIEVED_PNT_FIVE": "For readable plugin or read labels we have to pass tabindex = 0, so that the screen ready can ready the label also.",
   "ACCORDIAN_EXAMPLE": "Accordian Example",
+  "DIALOG_WITH_SLOT_EXAMPLE": "Dialog With Slot Example",
+  "DIALOG_WITH_OPTIONAL_FOOTER_EXAMPLE": "Dialog With Optional Footer Option",
   "TITLE": "Salutation",
   "TITLE_PLACEHOLDER": "Select Salutation",
   "LABEL_FIRST_NAME": "First Name",

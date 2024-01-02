@@ -1,0 +1,40 @@
+<div class="row pt-2">
+  <div class="col-12 mb-4 parent-block container-fluid">
+    <h4 class="mb-3" [innerHTML]="'DIALOG_WITH_SLOT_EXAMPLE' | translate"></h4>
+    <ptg-ui-toggle-code
+      [htmlCode]="htmlCode"
+      [tsCode]="tsCode"
+    ></ptg-ui-toggle-code>
+    <ptg-modal
+      modal-size="lg"
+      confirm-button-name="Okay"
+      (modalClose)="modalClosed()"
+    >
+      <div slot="body-block">
+        <h2>Angular Slot for Body</h2>
+      </div>
+    </ptg-modal>
+  </div>
+  <hr />
+  <div class="col-12 parent-block container-fluid">
+    <h4
+      class="mb-3"
+      [innerHTML]="'DIALOG_WITH_OPTIONAL_FOOTER_EXAMPLE' | translate"
+    ></h4>
+    <ptg-ui-toggle-code
+      [htmlCode]="htmlCodeToHideFooter"
+      [tsCode]="tsCode"
+    ></ptg-ui-toggle-code>
+    <ptg-modal
+      :show-footer="false"
+      btn-name="Hide Footer in Modal"
+      modal-size="md"
+      confirm-button-name="Okay"
+      (modalClose)="modalClosed()"
+    >
+      <div slot="body-block">
+        <h2>In Angular</h2>
+      </div>
+    </ptg-modal>
+  </div>
+</div>

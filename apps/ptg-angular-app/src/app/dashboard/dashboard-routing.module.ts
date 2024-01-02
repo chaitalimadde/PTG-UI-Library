@@ -3,7 +3,7 @@
  * @since March 2022
  * @author Bhanu Prakash Sharma
  * @Module dashboardRoutingModule;
- * @description This module for dashboard routing 
+ * @description This module for dashboard routing
 **/
 
 import { NgModule } from '@angular/core';
@@ -27,6 +27,7 @@ import { CheckboxExamplesComponent } from './checkbox-examples/checkbox-examples
 import { GridlayoutexampleComponent } from './gridlayoutexample/gridlayoutexample.component';
 import { AccordianExampleComponent } from './accordian-example/accordian-example.component';
 import { MultistepFormLayoutComponent } from './multistep-form/multistep-form-layout/multistep-form-layout.component';
+import { DialogExampleComponent } from './dialog-component/dialog-example.component';
 
 const routes: Routes = [
   {
@@ -103,6 +104,10 @@ const routes: Routes = [
         component: MaterialDatatableComponent
       }
     ]
+  },
+  {
+    path: 'dialog',
+    component: DialogExampleComponent
   },
   {
     path:'download',

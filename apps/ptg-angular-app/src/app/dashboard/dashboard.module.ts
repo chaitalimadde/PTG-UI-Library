@@ -51,6 +51,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccordianExampleComponent } from './accordian-example/accordian-example.component';
 import { MultistepFormLayoutComponent } from './multistep-form/multistep-form-layout/multistep-form-layout.component';
+import { DialogExampleComponent } from './dialog-component/dialog-example.component';
+
 
 import { ToggleCodeComponent } from './toggle-code/toggle-code.component';
 // Material Module
@@ -64,6 +66,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DemoPtgUiNgModule } from '@ptg-angular-app/common/demo-ptg-ui-ng/demo-ptg-ui-ng.module';
+
+import { WebComponentsAngularModule } from '@ptg-ui/ptg-ui-web-components-angular';
+import { defineCustomElements } from '@ptg-ui/ptg-ui-web-components/loader';
+defineCustomElements();
 
 @NgModule({
   declarations: [
@@ -99,7 +105,8 @@ import { DemoPtgUiNgModule } from '@ptg-angular-app/common/demo-ptg-ui-ng/demo-p
     ActionButtonComponent,
     AccordianExampleComponent,
     MultistepFormLayoutComponent,
-    ToggleCodeComponent
+    ToggleCodeComponent,
+    DialogExampleComponent
   ],
 
   bootstrap: [MultistepFormLayoutComponent],
@@ -124,7 +131,8 @@ import { DemoPtgUiNgModule } from '@ptg-angular-app/common/demo-ptg-ui-ng/demo-p
     MatFormFieldModule,
     MatInputModule,
     DemoPtgUiNgModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    WebComponentsAngularModule
   ],
 })
 export class DashboardModule {}

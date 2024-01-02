@@ -222,23 +222,34 @@ export class PtgInput {
 }
 
 
-export declare interface PtgModal extends Components.PtgModal {}
+export declare interface PtgModal extends Components.PtgModal {
+  /**
+   *  
+   */
+  onModalClose: EventEmitter<CustomEvent<boolean>>;
+  /**
+   *  
+   */
+  onConfirmClose: EventEmitter<CustomEvent<boolean>>;
+
+}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['isOpen']
+  inputs: ['btnName', 'confirmButtonName', 'isOpen', 'modalHeaderName', 'modalSize', 'showFooter', 'showHeader']
 })
 @Component({
   selector: 'ptg-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['isOpen']
+  inputs: ['btnName', 'confirmButtonName', 'isOpen', 'modalHeaderName', 'modalSize', 'showFooter', 'showHeader']
 })
 export class PtgModal {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['onModalClose', 'onConfirmClose']);
   }
 }
 

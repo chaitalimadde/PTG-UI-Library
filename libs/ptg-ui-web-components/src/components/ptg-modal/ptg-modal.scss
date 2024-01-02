@@ -20,21 +20,32 @@
   height: 100%;
   width: 100%;
   position: absolute;
-
 }
 
 .modal-wrapper .modal{
   background: var(--white);
-  width: 600px;
   height: auto;
   position: absolute;
   left: 50%;
   transform: translate(-50%,0px);
   border-radius: 5px;
+  width: 100%;
   /* transition: visibility 0s linear 0s,opacity 0.25s 0s,tranform 0.25s; */
+  &.lg {
+    max-width: 800px;
+  }
+
+  &.md {
+    max-width: 600px;
+  }
+
+  &.sm {
+    max-width: 300px;
+  }
 }
 
-.modal-wrapper .modal .header{
+
+.modal-wrapper .modal .header {
   padding: 16px;
   font-size: 16px;
   display: flex;
@@ -89,7 +100,8 @@
 .isOpen{
   opacity: 1;
   visibility: visible;
- /* transition: visibility 0s linear 0.25s,opacity 0.25s 0s,tranform 0.25s; */
+  z-index: 9999;
+ transition: visibility 0s linear 0.25s,opacity 0.25s 0s,tranform 0.25s;
 
 }
 .close{

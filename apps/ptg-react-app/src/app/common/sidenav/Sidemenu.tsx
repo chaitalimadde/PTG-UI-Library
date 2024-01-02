@@ -32,8 +32,8 @@ export const NavigationData = [
         path: '/highcharts',
         id: 'highchart',
         disabled: false,
-      }      
-    ],  
+      }
+    ],
   },
   {
     label: 'DATA TABLE',
@@ -63,7 +63,13 @@ export const NavigationData = [
         id: 'react-table',
         disabled: false,
       },
-    ],  
+    ],
+  },
+  {
+    path: '/dialog',
+    icon: 'fa fa-th',
+    label: 'Dialog',
+    disabled: false,
   },
   {
     path: '/dragnDrop',
@@ -119,4 +125,4 @@ export const NavigationData = [
     label: 'WEB ACCESSIBILTY',
     disabled: false,
   }
-];  
+];

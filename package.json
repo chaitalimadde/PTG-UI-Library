@@ -8,6 +8,7 @@
     "start": "nx serve",
     "start:ptg-angular": "nx serve ptg-angular-app",
     "start:ptg-react": "nx serve ptg-react-app",
+    "start:ptg-stencil": "nx serve ptg-ui-web-components",
     "build": "nx build",
     "build:react-app": "nx build ptg-react-app --baseHref /ptg-react-app/",
     "build:ng-app": "nx build ptg-angular-app --baseHref /ptg-angular-app/",
