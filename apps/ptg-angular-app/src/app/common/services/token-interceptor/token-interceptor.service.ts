@@ -35,11 +35,11 @@ export class TokenInterceptor implements HttpInterceptor {
     {
       const tokenType = 'Bearer';
       const token = JSON.parse(this.authService.getToken())?.jwt||"";
-      request = request.clone({
+      request = token ? request.clone({
         setHeaders: {
           Authorization: `${tokenType} ${token}`,
         },
-      });
+      }):request.clone({})
     }
 
     return next.handle(request);

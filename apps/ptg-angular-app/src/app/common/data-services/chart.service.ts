@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class chartService {
-  apiURL = 'http://localhost:1337/api/';
+  apiURL = 'http://ptguistrapi.azurewebsites.net/api/'; 
 
   constructor(private http: HttpClient) {}
 

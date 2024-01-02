@@ -5,20 +5,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class mocksService {
-  apiURL = 'http://localhost:1337/api/';
+  apiURL = 'http://ptguistrapi.azurewebsites.net/api/';
 
   constructor(private http: HttpClient) {}
 
   getCityList() {
-    const header = new HttpHeaders().set('Authorization', `Bearer hello`);
     return this.http.get<any>(`${this.apiURL}city-a-lists`, {
-      headers: header,
-    });
+});
   }
   getCardList() {
     return this.http.get<any>(`${this.apiURL}card-lists`);
   }
-  //for header comp
   getLangList() {
     return this.http.get<any>(`${this.apiURL}lang-lists`);
   }
