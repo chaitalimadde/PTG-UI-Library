@@ -1,11 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class chartService {
-  apiURL = 'http://ptguistrapi.azurewebsites.net/api/'; 
+  apiURL = 'http://ptguistrapi.azurewebsites.net/api/';
 
   constructor(private http: HttpClient) {}
 

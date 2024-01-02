@@ -13,14 +13,8 @@ import { TreeviewItem } from 'ngx-treeview';
 })
 export class CheckboxExamplesComponent implements OnInit {
   constructor(private mocksApiService: mocksService,) {}
-  checkBoxData:any;
-  resources=resources
-  ngOnInit(): void {
-    this.mocksApiService.getCheckboxList().subscribe((response) => {
-    this.checkBoxData =new TreeviewItem(response?.data[0].attributes.data) ;
-      });
-    }
-  
+  checkBoxData: any;
+  resources = resources
 
   treeViewHtmlCode = `
     <ptg-ui-indeterminate-checkboxes [checkBoxList]="treeData"
@@ -66,8 +60,13 @@ export class CheckboxExamplesComponent implements OnInit {
     onChanges(event:any){
       console.log(On Change event, 'event');
     }
+  }`;
+
+  ngOnInit(): void {
+    this.mocksApiService.getCheckboxList().subscribe((response) => {
+      this.checkBoxData = new TreeviewItem(response?.data[0].attributes.data);
+    });
   }
-  `;
 
   onChanges(event: any){
     console.log(event, 'event');

@@ -27,79 +27,6 @@ export class HighChartsComponent implements OnInit {
   stackedColumn: any = { categories: [] };
 
   resources = resources;
-
-  ngOnInit(): void {
-    // linechart2D
-    this.chartApiService.getLineChart2D().subscribe((response) => {
-      let data1 = response?.data[0].attributes.data;
-      let categorie = response?.data[0]?.attributes?.categories.split(',');
-      if (data1.length) {
-        this.lineChart3d = {
-          data: data1,
-          categories: categorie,
-        };
-      }
-    });
-    //barchart3D
-    this.chartApiService.getBarChart3D().subscribe((response) => {
-      let data1 = response?.data[0].attributes.data;
-      let categorie = response?.data[0]?.attributes?.categories.split(',');
-      if (data1.length) {
-        this.barChart3d = {
-          data: data1,
-          categories: categorie,
-        };
-      }
-    });
-    //multilinechart2d
-    this.chartApiService.getMultiLineChart2D().subscribe((response) => {
-      let data1 = response?.data[0].attributes.data;
-      let categorie = response?.data[0]?.attributes?.categories.split(',');
-      if (data1.length) {
-        this.multiLineChart3d = {
-          data: data1,
-          categories: categorie,
-        };
-      }
-    });
-
-    //lineBarChart
-    this.chartApiService.getLineBarChart().subscribe((response) => {
-      let series = response?.data[0].attributes.series;
-      let categorie = response?.data[0]?.attributes?.categories.split(',');
-      this.lineBarChart = {
-        title: response?.data[0].attributes.title,
-        subtitle: response?.data[0].attributes.subtitle,
-        categories: categorie,
-        remainingOptions: {
-          series: series,
-        },
-      };
-    });
-
-    //stackedColumn
-    this.chartApiService.getStackedColumnData().subscribe((response) => {
-      let series = response?.data[0].attributes.series;
-      let categorie = response?.data[0]?.attributes?.categories.split(',');
-      this.stackedColumn = {
-        title: response?.data[0].attributes.title,
-        categories: categorie,
-        remainingOptions: {
-          series: series,
-        },
-      };
-    });
-
-    //pieChart3d
-    this.chartApiService.getPieChart3D().subscribe((response) => {
-      let data1 = response?.data[0].attributes.data.data;
-      if (data1.length) {
-        this.pieChart3d = {
-          data: data1,
-        };
-      }
-    });
-  }
   barChart2dHtmlCode = `
   <ptg-ui-high-bar-chart [data]="barData"></ptg-ui-high-bar-chart>`;
 
@@ -302,4 +229,76 @@ export class HighChartsComponent implements OnInit {
   pieChart3dHtmlCode = `
   <ptg-ui-high-3d-pie-chart [data]="pieData"></ptg-ui-high-3d-pie-chart>`;
 
+  ngOnInit(): void {
+    // linechart2D
+    this.chartApiService.getLineChart2D().subscribe((response) => {
+      const chartData = response?.data[0]?.attributes;
+      const category = chartData?.categories.split(',');
+      if (chartData.data.length) {
+        this.lineChart3d = {
+          data: chartData.data,
+          categories: category,
+        };
+      }
+    });
+    //barchart3D
+    this.chartApiService.getBarChart3D().subscribe((response) => {
+      const barChartData = response?.data[0]?.attributes;
+      const category = barChartData?.categories.split(',');
+      if (barChartData?.data.length) {
+        this.barChart3d = {
+          data: barChartData.data,
+          categories: category,
+        };
+      }
+    });
+    //multilinechart2d
+    this.chartApiService.getMultiLineChart2D().subscribe((response) => {
+      const lineChartData = response?.data[0]?.attributes;
+      const category = lineChartData?.categories.split(',');
+      if (lineChartData.data.length) {
+        this.multiLineChart3d = {
+          data: lineChartData.data,
+          categories: category,
+        };
+      }
+    });
+
+    //lineBarChart
+    this.chartApiService.getLineBarChart().subscribe((response) => {
+      const lineData = response?.data[0]?.attributes;
+      const category = lineData?.categories.split(',');
+      this.lineBarChart = {
+        title: lineData.title,
+        subtitle: lineData.subtitle,
+        categories: category,
+        remainingOptions: {
+          series: lineData.series,
+        },
+      };
+    });
+
+    //stackedColumn
+    this.chartApiService.getStackedColumnData().subscribe((response) => {
+      const stackedSeries = response?.data[0]?.attributes;
+      const category = stackedSeries.categories.split(',');
+      this.stackedColumn = {
+        title: stackedSeries.title,
+        categories: category,
+        remainingOptions: {
+          series: stackedSeries.series,
+        },
+      };
+    });
+
+    //pieChart3d
+    this.chartApiService.getPieChart3D().subscribe((response) => {
+      const data1 = response?.data[0].attributes.data.data;
+      if (data1.length) {
+        this.pieChart3d = {
+          data: data1,
+        };
+      }
+    });
+  }
 }

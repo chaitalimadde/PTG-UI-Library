@@ -7,14 +7,8 @@ import { mocksService } from '@ptg-angular-app/common/data-services/mocks.servic
   styleUrls: ['./accordian-example.component.scss']
 })
 export class AccordianExampleComponent implements OnInit {
-  accordianData:any;
+  accordianData: any;
   constructor(private mocksApiService: mocksService,) { }
-
-  ngOnInit(): void {
-    this.mocksApiService.getAccordianData().subscribe((response) => {
-      this.accordianData = response?.data[0].attributes.data;
-      });
-  }
 
   htmlCode = `
   <ptg-ui-accordian [listData]="data"></ptg-ui-accordian>`;
@@ -34,4 +28,9 @@ export class AccordianExampleComponent implements OnInit {
       ]
     }`
 
+  ngOnInit(): void {
+    this.mocksApiService.getAccordianData().subscribe((response) => {
+      this.accordianData = response?.data[0].attributes.data;
+      });
+  }
 }
