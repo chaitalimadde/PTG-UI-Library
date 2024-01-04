@@ -239,7 +239,6 @@ export function WebAccessibility(props: WebAccessibilityProps) {
     export interface WebAccessibilityProps {}
     export function WebAccessibility(props: WebAccessibilityProps) {
     
-      const startRef: any = useRef();
     
       const [user, setUser]: any = useState({
         isLoading: false,
